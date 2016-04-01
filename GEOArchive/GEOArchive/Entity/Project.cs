@@ -6,15 +6,15 @@ using System.Threading.Tasks;
 
 namespace GEOArchive.Entity
 {
-    public class Project
+    public class GeoProject
     {
-        public int ProjectId { get; set; }
-        public string ProjectNum { get; set; }
-        public string ProjectName { get; set; }
-        public string ProjectPerformer { get; set; }
-        public string ProjectCreateDate { get; set; }
-        public string ProjectDescription { get; set; }
-        public DateTime ProjectDateCreate { get; set; }
+        public int GeoProjectId { get; set; }
+        public string GeoProjectNum { get; set; }
+        public string GeoProjectName { get; set; }
+        public string GeoProjectPerformer { get; set; }
+        public string GeoProjectCreateDate { get; set; }
+        public string GeoProjectDescription { get; set; }
+        public DateTime GeoProjectDateCreate { get; set; }
 
         public virtual List<GeoFile> GeoFiles { get; set; }
     }
@@ -26,7 +26,7 @@ namespace GEOArchive.Entity
         public string GeoFilePath { get; set; }
         public DateTime GeoFileDateCreate { get; set; }
 
-        public int ProjectId { get; set; }
-        public virtual Project Project { get; set; }
+        public int GeoProjectId { get; set; }
+        public virtual GeoProject Project { get; set; }
     }
 }
