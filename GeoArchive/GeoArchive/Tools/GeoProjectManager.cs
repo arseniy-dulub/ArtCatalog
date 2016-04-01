@@ -31,9 +31,14 @@ namespace GeoArchive.Tools
                 newGeoProject.Name = FileManager.GetFileName(firstFile);
                 newGeoProject.Files = uploadFiles;
 
-                db.GeoProjects.Add(newGeoProject);
-                db.SaveChanges();
-                return true;
+                try
+                {
+                    db.GeoProjects.Add(newGeoProject);
+                    db.SaveChanges();
+                    return true;
+                }
+                catch { return false; }
+                
             }
             else
             {
