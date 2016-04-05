@@ -25,7 +25,6 @@ namespace GEOArchive
                 db.GeoSets.Add(geoSet);
                 db.SaveChanges();
             }
-
         }
     }
 }
