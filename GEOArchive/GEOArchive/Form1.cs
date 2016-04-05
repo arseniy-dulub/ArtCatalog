@@ -7,6 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using GEOArchive.Entity;
+using GEOArchive.DB;
+using System.Data.Entity;
 
 namespace GEOArchive
 {
@@ -15,6 +18,14 @@ namespace GEOArchive
         public Form1()
         {
             InitializeComponent();
+
+            using (var db = new GeoSetContext())
+            {
+                var geoSet = new GeoSet() { GeoSetNum = "100500" };
+                db.GeoSets.Add(geoSet);
+                db.SaveChanges();
+            }
+
         }
     }
 }
