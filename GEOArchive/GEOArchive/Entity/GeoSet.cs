@@ -13,6 +13,11 @@ namespace GEOArchive.Entity
         public string GeoSetDateCreate { get; set; }
         public virtual List<GeoFile> Files { get; set; }
         public string Description { get; set; }
+
+        public override string ToString()
+        {
+            return GeoSetNum;
+        }
     }
 
     public class GeoFile
