@@ -62,6 +62,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Tools\FileManager.cs" />
+    <Compile Include="Tools\GEOEntities\FieldDescription.cs" />
+    <Compile Include="Tools\GEOEntities\Laboratory.cs" />
+    <Compile Include="Tools\GeoFileReader.cs" />
+    <Compile Include="Tools\GEOTools\CalcManager.cs" />
+    <Compile Include="UserControls\GeoFileInfoView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\GeoFileInfoView.Designer.cs">
+      <DependentUpon>GeoFileInfoView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\GeoSetView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\GeoSetView.Designer.cs">
+      <DependentUpon>GeoSetView.cs</DependentUpon>
+    </Compile>
     <Compile Include="DB\GeoSetContext.cs" />
     <Compile Include="Entity\GeoSet.cs" />
     <Compile Include="Form1.cs">
@@ -81,6 +98,12 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="UserControls\GeoFileInfoView.resx">
+      <DependentUpon>GeoFileInfoView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\GeoSetView.resx">
+      <DependentUpon>GeoSetView.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -98,6 +121,7 @@
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>

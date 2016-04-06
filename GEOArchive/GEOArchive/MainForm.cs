@@ -13,18 +13,11 @@ using System.Data.Entity;
 
 namespace GEOArchive
 {
-    public partial class Form1 : Form
+    public partial class MainForm : Form
     {
-        public Form1()
+        public MainForm()
         {
             InitializeComponent();
-
-            using (var db = new GeoSetContext())
-            {
-                var geoSet = new GeoSet() { GeoSetNum = "100500" };
-                db.GeoSets.Add(geoSet);
-                db.SaveChanges();
-            }
         }
     }
 }
