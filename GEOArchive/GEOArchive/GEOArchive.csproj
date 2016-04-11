@@ -73,12 +73,6 @@
     <Compile Include="Tools\GEOEntities\Laboratory.cs" />
     <Compile Include="Tools\GeoFileReader.cs" />
     <Compile Include="Tools\GEOTools\CalcManager.cs" />
-    <Compile Include="UserControls\GeoFileInfoView.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="UserControls\GeoFileInfoView.Designer.cs">
-      <DependentUpon>GeoFileInfoView.cs</DependentUpon>
-    </Compile>
     <Compile Include="UserControls\GeoSetView.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -110,13 +104,12 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="UserControls\GeoFileInfoView.resx">
-      <DependentUpon>GeoFileInfoView.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="UserControls\GeoSetView.resx">
       <DependentUpon>GeoSetView.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
+    <None Include="Properties\DataSources\GEOArchive.Entity.GeoFile.datasource" />
+    <None Include="Properties\DataSources\GEOArchive.Entity.GeoSet.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

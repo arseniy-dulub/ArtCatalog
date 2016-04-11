@@ -28,21 +28,21 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.tsbAddProject = new System.Windows.Forms.ToolStripButton();
-            this.geoSetView1 = new GEOArchive.UserControls.GeoSetView();
             this.lbProjects = new System.Windows.Forms.ListBox();
+            this.GeoSetBS = new System.Windows.Forms.BindingSource(this.components);
             this.label1 = new System.Windows.Forms.Label();
-            this.tsbAttachFiles = new System.Windows.Forms.ToolStripButton();
             this.toolStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.GeoSetBS)).BeginInit();
             this.SuspendLayout();
             // 
             // toolStrip1
             // 
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsbAddProject,
-            this.tsbAttachFiles});
+            this.tsbAddProject});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(1008, 38);
@@ -58,20 +58,20 @@
             this.tsbAddProject.Text = "Добавить проект";
             this.tsbAddProject.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             // 
-            // geoSetView1
-            // 
-            this.geoSetView1.Location = new System.Drawing.Point(260, 41);
-            this.geoSetView1.Name = "geoSetView1";
-            this.geoSetView1.Size = new System.Drawing.Size(748, 449);
-            this.geoSetView1.TabIndex = 1;
-            // 
             // lbProjects
             // 
+            this.lbProjects.DataSource = this.GeoSetBS;
+            this.lbProjects.DisplayMember = "GeoSetNum";
             this.lbProjects.FormattingEnabled = true;
             this.lbProjects.Location = new System.Drawing.Point(12, 57);
             this.lbProjects.Name = "lbProjects";
-            this.lbProjects.Size = new System.Drawing.Size(144, 407);
+            this.lbProjects.Size = new System.Drawing.Size(144, 654);
             this.lbProjects.TabIndex = 2;
+            this.lbProjects.ValueMember = "GeoSetId";
+            // 
+            // GeoSetBS
+            // 
+            this.GeoSetBS.DataSource = typeof(GEOArchive.Entity.GeoSet);
             // 
             // label1
             // 
@@ -82,16 +82,6 @@
             this.label1.TabIndex = 3;
             this.label1.Text = "Проекты:";
             // 
-            // tsbAttachFiles
-            // 
-            this.tsbAttachFiles.Image = ((System.Drawing.Image)(resources.GetObject("tsbAttachFiles.Image")));
-            this.tsbAttachFiles.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbAttachFiles.Name = "tsbAttachFiles";
-            this.tsbAttachFiles.Size = new System.Drawing.Size(127, 35);
-            this.tsbAttachFiles.Text = "Прикрепить файл(ы)";
-            this.tsbAttachFiles.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.tsbAttachFiles.ToolTipText = "Прикрепить файл(ы)";
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -99,12 +89,12 @@
             this.ClientSize = new System.Drawing.Size(1008, 730);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.lbProjects);
-            this.Controls.Add(this.geoSetView1);
             this.Controls.Add(this.toolStrip1);
             this.Name = "MainForm";
             this.Text = "Архив проектов";
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.GeoSetBS)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -114,10 +104,9 @@
 
         private System.Windows.Forms.ToolStrip toolStrip1;
         private System.Windows.Forms.ToolStripButton tsbAddProject;
-        private UserControls.GeoSetView geoSetView1;
         private System.Windows.Forms.ListBox lbProjects;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ToolStripButton tsbAttachFiles;
+        private System.Windows.Forms.BindingSource GeoSetBS;
     }
 }
 
