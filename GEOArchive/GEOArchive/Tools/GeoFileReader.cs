@@ -7,6 +7,7 @@ using System.Xml.Serialization;
 using GEOArchive.Tools.GEOEntities;
 using System.IO;
 using System.Windows.Forms;
+using GEOArchive.Entity;
 
 namespace GEOArchive.Tools
 {
@@ -25,10 +26,27 @@ namespace GEOArchive.Tools
             {
                 result = (GeoObject)reader.Deserialize(file);
             }
-            catch (Exception e)
+            catch { }
+
+            file.Close();
+
+            return result;
+        }
+
+        public static LabObject DeSerializeLabObject(string filename)
+        {
+            LabObject result = new LabObject();
+
+            System.Xml.Serialization.XmlSerializer reader =
+                new System.Xml.Serialization.XmlSerializer(typeof(LabObject));
+
+            System.IO.StreamReader file = new StreamReader(filename);
+
+            try
             {
-                MessageBox.Show(e.InnerException.ToString());
+                result = (LabObject)reader.Deserialize(file);
             }
+            catch {}
 
             file.Close();
 
@@ -51,9 +69,35 @@ namespace GEOArchive.Tools
             return result;
         }
 
+        public static List<Ige> DeserializeIgeList(string filename)
+        {
+            List<Ige> result = new List<Ige>();
+
+            System.Xml.Serialization.XmlSerializer reader =
+                new System.Xml.Serialization.XmlSerializer(typeof(List<Ige>));
+
+            System.IO.StreamReader file = new StreamReader(filename);
+
+            result = (List<Ige>)reader.Deserialize(file);
+
+            file.Close();
+
+            return result;
+        }
+
         public static string GetGeoSetNum(GeoObject source)
         {
             return source.Id;
+        }
+
+        public static string GetGeoSetNum(LabObject source)
+        {
+            return source.Id;
+        }
+        
+        public static string GetGeoSetCreator(LabObject source)
+        {
+            return source.DoerPosit + " " + source.DoerName;
         }
 
         public static string GetGeoSetOutsCount(GeoObject source)
@@ -86,8 +130,13 @@ namespace GEOArchive.Tools
         {
             return source.DateCreate.ToShortDateString();
         }
-
+        
         public static string GetGeoSetName(GeoObject source)
+        {
+            return source.Name;
+        }
+
+        public static string GetGeoSetName(LabObject source)
         {
             return source.Name;
         }
@@ -139,11 +188,11 @@ namespace GEOArchive.Tools
             }
 
             if (dynamProbeContains)
-                result += @"   Динамическое: +\n";
-            else result += @"   Динамическое: -\n";
+                result += @"   Динамическое: есть" + "\n";
+            else result += @"   Динамическое: нет" + "\n";
             if (staticProbeContains)
-                result += @"   Статическое: +\n";
-            else result += @"   Статическое: -\n";
+                result += @"   Статическое: есть" + "\n";
+            else result += @"   Статическое: нет" + "\n";
 
             return result;
         }
@@ -158,6 +207,207 @@ namespace GEOArchive.Tools
             }
             else result += @"Нет данных по сдвиговым испытаниям.";
         
+            return result;
+        }
+
+        public static string GetTableNumsFromLabDataStraight(List<ResultTable> source)
+        {
+            string result = string.Empty;
+
+            List<string> diffTables = new List<string>();
+
+            foreach (var test in source)
+            {
+                if (!diffTables.Contains(test.Obj)) diffTables.Add(test.Obj);
+            }
+
+            foreach (var table in diffTables)
+            {
+                result += table + "; ";
+            }
+
+            return result;
+        }
+
+        public static string GetGroundsFromTestsStraight(List<ResultTable> source)
+        {
+            string result = string.Empty;
+
+            List<string> diffGrounds = new List<string>();
+
+            foreach (var test in source)
+            {
+                if (!diffGrounds.Contains(test.Name)) diffGrounds.Add(test.Name);
+            }
+
+            foreach (var g in diffGrounds)
+            {
+                result += g + "; ";
+            }
+
+            return result;
+        }
+
+        public static string GetIgeCount(List<Ige> source)
+        {
+            return source.Count.ToString("N0");
+        }
+
+        public static string GetIgeStraight(List<Ige> source)
+        {
+            string result = string.Empty;
+
+            int columner = 0;
+
+            foreach (var ige in source)
+            {
+                if (columner % 4 == 0 && columner != 0)
+                {
+                    result += ige.Id + " - " + ige.GroundName + "; " + '\n';
+                }
+                else
+                {
+                    result += ige.Id + " - " + ige.GroundName + "; ";
+                }
+                columner++;
+            }
+
+            return result;
+        }
+
+        public static List<CutEntity> DeserializeCutList(string filename)
+        {
+            List<CutEntity> result = new List<CutEntity>();
+            XmlSerializer reader = new XmlSerializer(typeof(List<CutEntity>));
+            StreamReader file = new StreamReader(filename);
+            result = (List<CutEntity>)reader.Deserialize(file);
+            file.Close();
+            return result;
+        }
+
+        public static string GetCutsCount(List<CutEntity> source)
+        {
+            return source.Count.ToString("N0");
+        }
+
+        public static string GetCutsStraight(List<CutEntity> source)
+        {
+            string result = string.Empty;
+
+            foreach (var cut in source)
+            {
+                result += cut.Id + "; ";
+            }
+
+            return result;
+        }
+
+        public static string IndentifyGeoFile(GeoFile file)
+        {
+            string result = string.Empty;
+            string extencion = FileManager.GetFileExtension(file.GeoFilePath);
+
+            switch (extencion)
+            {
+                case ".xgeoobj":
+                    #region Гео объект
+                    {
+                        try
+                        {
+                            GeoObject geoObject = DeSerializeGeoObject(file.GeoFilePath);
+                            result +=
+                                "Тип файла: " + FileManager.GetFileFullType(file) +'\n' + '\n' +
+                                "Первоначальная информация:" + '\n' +
+                                "   -Номер объекта: " + GetGeoSetNum(geoObject) + '\n' +
+                                "   -Исполнитель: " + GetGeoSetCreator(geoObject) + '\n' +
+                                "   -Дата создания: " + GetGeoSetDateCreate(geoObject) + '\n' +
+                                "   -Наименование объекта: " + GetGeoSetName(geoObject) + '\n' + '\n' +
+                                "   -Выработки(кол-во: " + GetGeoSetOutsCount(geoObject) + "): " + GetGeoSetOutsStraight(geoObject) + '\n' + '\n' +
+                                "   -" + GetProbingContains(geoObject) + '\n' +
+                                "   -Разрезы: " + GetGeoSetCuts(geoObject) + '\n' + '\n';
+                        }
+                        catch
+                        { result += "Не удалось прочитать файл."; }
+                        break;
+                        
+                    }
+                #endregion
+                case ".xgeolab":
+                    #region Гео таблица
+                    {
+                        try
+                        {
+                            LabObject labObject = DeSerializeLabObject(file.GeoFilePath);
+                            result +=
+                                "Тип файла: " + FileManager.GetFileFullType(file) + '\n' + '\n' +
+                                "Первоначальная информация:" + '\n' +
+                                "   -Номер таблицы: " + GetGeoSetNum(labObject) + '\n' +
+                                "   -Исполнитель: " + GetGeoSetCreator(labObject) + '\n' +
+                                "   -Наименование объекта: " + GetGeoSetName(labObject) + '\n' + '\n' +
+                                "   -Пробы(кол-во: " + GetLabResultCount(labObject.ResultItems) + "): " + GetGroundsFromTestsStraight(labObject.ResultItems) + '\n' + '\n' +
+                                GetShearTestingContains(labObject.ResultItems);
+                        }
+                        catch
+                        { result += "Не удалось прочитать файл."; }
+                        break;
+                    }
+                #endregion
+                case ".labdata":
+                    #region LabData
+                    {
+                        try
+                        {
+                            List<ResultTable> labData = DeserializeResultTables(file.GeoFilePath);
+                            result +=
+                                "Тип файла: " + FileManager.GetFileFullType(file) + '\n' + '\n' +
+                                "Первоначальная информация:" + '\n' +
+                                "   -Номера таблиц: " + GetTableNumsFromLabDataStraight(labData) + '\n' +
+                                "   -Пробы(кол-во: " + GetLabResultCount(labData) + "): " + GetGroundsFromTestsStraight(labData) + '\n' + '\n' +
+                                GetShearTestingContains(labData);
+                        }
+                        catch { result += "Не удалось прочитать файл."; }
+                        break;
+                    }
+                #endregion
+                case ".igelist":
+                    #region IgeList
+                    {
+                        try
+                        {
+                            List<Ige> igeList = DeserializeIgeList(file.GeoFilePath);
+                            result +=
+                                "Тип файла: " + FileManager.GetFileFullType(file) + '\n' + '\n' +
+                                "   -Инженерно геологические элементы(ИГЭ кол-во: " + GetIgeCount(igeList) + ")" + '\n' +
+                                GetIgeStraight(igeList);// + '\n' +
+
+                        }
+                        catch { result += "Не удалось прочитать файл."; }
+                        break;
+                    }
+                #endregion
+                case ".cutlist":
+                    #region CutList
+                    {
+                        try
+                        {
+                            List<CutEntity> cuts = DeserializeCutList(file.GeoFilePath);
+                            result +=
+                                "Тип файла: " + FileManager.GetFileFullType(file) + '\n' + '\n' +
+                                "   -Геологические разреы(кол-во: " + GetCutsCount(cuts) + ")" + '\n' +
+                                GetCutsStraight(cuts);
+
+                        }
+                        catch { result += "Не удалось прочитать файл."; }
+                        break;
+                    }
+                #endregion
+                default:
+                    {
+                        result += "Тип файла: " + FileManager.GetFileFullType(file);
+                        break;
+                    }
+            }
+                        
             return result;
         }
     }

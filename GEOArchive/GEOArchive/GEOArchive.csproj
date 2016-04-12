@@ -69,7 +69,9 @@
       <DependentUpon>AddingProjectForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Tools\FileManager.cs" />
+    <Compile Include="Tools\GEOEntities\CutEntity.cs" />
     <Compile Include="Tools\GEOEntities\FieldDescription.cs" />
+    <Compile Include="Tools\GEOEntities\IGE.cs" />
     <Compile Include="Tools\GEOEntities\Laboratory.cs" />
     <Compile Include="Tools\GeoFileReader.cs" />
     <Compile Include="Tools\GEOTools\CalcManager.cs" />

@@ -28,20 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.geoSetView1 = new GEOArchive.UserControls.GeoSetView();
             this.btnOK = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
+            this.geoSetView1 = new GEOArchive.UserControls.GeoSetView();
             this.SuspendLayout();
-            // 
-            // geoSetView1
-            // 
-            this.geoSetView1.Location = new System.Drawing.Point(-2, 0);
-            this.geoSetView1.Name = "geoSetView1";
-            this.geoSetView1.Size = new System.Drawing.Size(782, 464);
-            this.geoSetView1.TabIndex = 0;
             // 
             // btnOK
             // 
+            this.btnOK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnOK.Location = new System.Drawing.Point(620, 527);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(75, 23);
@@ -51,12 +45,23 @@
             // 
             // btnCancel
             // 
+            this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnCancel.Location = new System.Drawing.Point(701, 527);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
             this.btnCancel.TabIndex = 2;
             this.btnCancel.Text = "Отмена";
             this.btnCancel.UseVisualStyleBackColor = true;
+            // 
+            // geoSetView1
+            // 
+            this.geoSetView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.geoSetView1.Location = new System.Drawing.Point(-2, 0);
+            this.geoSetView1.Name = "geoSetView1";
+            this.geoSetView1.Size = new System.Drawing.Size(782, 521);
+            this.geoSetView1.TabIndex = 0;
             // 
             // AddingProjectForm
             // 

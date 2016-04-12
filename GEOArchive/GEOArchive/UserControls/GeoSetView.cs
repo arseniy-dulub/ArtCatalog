@@ -23,7 +23,9 @@ namespace GEOArchive.UserControls
             InitializeComponent();
             GeoSetBS.DataSource = new GeoSet() { Files = new List<GeoFile>() };
             btnAttachFiles.Click += BtnAttachFiles_Click;
+            lvFiles.SelectedIndexChanged += LvFiles_SelectedIndexChanged;
         }
+
 
         private void BtnAttachFiles_Click(object sender, EventArgs e)
         {
@@ -52,7 +54,7 @@ namespace GEOArchive.UserControls
                 GeoFile newGeoFile = new GeoFile();
                 newGeoFile.GeoSetId = lastId + 1;
                 newGeoFile.GeoFileDateCreate = pFile.CreationTime.ToShortDateString();
-                newGeoFile.GeoFilePath = pFile.Name;
+                newGeoFile.GeoFilePath = pFile.FullName;
                 newGeoFile.GeoFileType = pFile.Extension;
                 filesToAdd.Add(newGeoFile);
                 lvFiles.Items.Add(GenerateListBoxItem(newGeoFile));
@@ -60,6 +62,19 @@ namespace GEOArchive.UserControls
 
             (GeoSetBS.DataSource as GeoSet).Files.AddRange(filesToAdd);
             
+        }
+
+        private void LvFiles_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            rtbFileContains.Clear();
+            try {
+                rtbFileContains.Text += GeoFileReader.IndentifyGeoFile(
+                    ((GeoSetBS.DataSource as GeoSet).Files.Find(file =>
+                            FileManager.GetFileNameWithExtensionFromPath(file.GeoFilePath) ==
+                            lvFiles.SelectedItems[0].Text))
+                    );
+            }
+            catch { }
         }
 
         public GeoSet GetFilledFields()
