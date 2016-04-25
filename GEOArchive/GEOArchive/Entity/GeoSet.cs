@@ -6,6 +6,14 @@ namespace GEOArchive.Entity
 {
     public class GeoSet
     {
+        public GeoSet()
+        {
+            if (Files == null)
+            {
+                Files = new List<GeoFile>();
+            }
+        }
+
         public int GeoSetId { get; set; }
         public string GeoSetNum { get; set; }
         public string GeoSetName { get; set; }

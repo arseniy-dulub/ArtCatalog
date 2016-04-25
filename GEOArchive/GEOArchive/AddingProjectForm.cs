@@ -22,7 +22,7 @@ namespace GEOArchive
 
         private void BtnOK_Click(object sender, EventArgs e)
         {
-            GeoSet newSetToAdd = geoSetView1.GetFilledFields();
+            GeoSet newSetToAdd = geoSetView1.GetCurrentGeoSet();
 
             if (newSetToAdd != null)
             {

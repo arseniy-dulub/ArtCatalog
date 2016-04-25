@@ -75,5 +75,22 @@ namespace GEOArchive.Tools
 
             return result;
         }
+        public static List<GeoFile> GenarateGeoFileList(string[] files)
+        {
+            List<GeoFile> result = new List<GeoFile>();
+
+            foreach (var file in files)
+            {
+                FileInfo pFile = new FileInfo(file);
+
+                GeoFile newGeoFile = new GeoFile();
+                newGeoFile.GeoFileDateCreate = pFile.CreationTime.ToShortDateString();
+                newGeoFile.GeoFilePath = pFile.FullName;
+                newGeoFile.GeoFileType = pFile.Extension;
+                result.Add(newGeoFile);
+            }
+
+            return result;
+        }
     }
 }

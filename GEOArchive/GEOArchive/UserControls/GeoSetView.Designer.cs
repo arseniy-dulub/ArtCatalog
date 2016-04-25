@@ -48,15 +48,14 @@
             this.rtbFileContains = new System.Windows.Forms.RichTextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.GeoSetBS = new System.Windows.Forms.BindingSource(this.components);
-            this.GeoFilesBS = new System.Windows.Forms.BindingSource(this.components);
             this.gbInfo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.GeoSetBS)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.GeoFilesBS)).BeginInit();
             this.SuspendLayout();
             // 
             // gbInfo
             // 
-            this.gbInfo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.gbInfo.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.gbInfo.Controls.Add(this.tbGeoSetDateCreate);
             this.gbInfo.Controls.Add(this.tbGeoSetCreator);
@@ -70,7 +69,7 @@
             this.gbInfo.Controls.Add(this.lGeoSetNum);
             this.gbInfo.Location = new System.Drawing.Point(3, 3);
             this.gbInfo.Name = "gbInfo";
-            this.gbInfo.Size = new System.Drawing.Size(830, 244);
+            this.gbInfo.Size = new System.Drawing.Size(830, 225);
             this.gbInfo.TabIndex = 0;
             this.gbInfo.TabStop = false;
             this.gbInfo.Text = "Информация о проекте";
@@ -127,7 +126,7 @@
             this.tbDescription.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.GeoSetBS, "Description", true));
             this.tbDescription.Location = new System.Drawing.Point(128, 147);
             this.tbDescription.Name = "tbDescription";
-            this.tbDescription.Size = new System.Drawing.Size(696, 91);
+            this.tbDescription.Size = new System.Drawing.Size(696, 72);
             this.tbDescription.TabIndex = 4;
             this.tbDescription.Text = "";
             // 
@@ -178,14 +177,13 @@
             // 
             // lvFiles
             // 
-            this.lvFiles.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
+            this.lvFiles.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lvFiles.LargeImageList = this.fileIcons;
-            this.lvFiles.Location = new System.Drawing.Point(15, 291);
+            this.lvFiles.Location = new System.Drawing.Point(15, 276);
             this.lvFiles.MultiSelect = false;
             this.lvFiles.Name = "lvFiles";
             this.lvFiles.ShowItemToolTips = true;
-            this.lvFiles.Size = new System.Drawing.Size(401, 164);
+            this.lvFiles.Size = new System.Drawing.Size(401, 179);
             this.lvFiles.SmallImageList = this.fileIcons;
             this.lvFiles.TabIndex = 1;
             this.lvFiles.UseCompatibleStateImageBehavior = false;
@@ -199,8 +197,9 @@
             // 
             // label1
             // 
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 275);
+            this.label1.Location = new System.Drawing.Point(12, 260);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(90, 13);
             this.label1.TabIndex = 2;
@@ -208,7 +207,8 @@
             // 
             // btnAttachFiles
             // 
-            this.btnAttachFiles.Location = new System.Drawing.Point(15, 249);
+            this.btnAttachFiles.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnAttachFiles.Location = new System.Drawing.Point(15, 234);
             this.btnAttachFiles.Name = "btnAttachFiles";
             this.btnAttachFiles.Size = new System.Drawing.Size(133, 23);
             this.btnAttachFiles.TabIndex = 5;
@@ -217,23 +217,21 @@
             // 
             // rtbFileContains
             // 
-            this.rtbFileContains.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.rtbFileContains.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.rtbFileContains.Location = new System.Drawing.Point(422, 291);
+            this.rtbFileContains.Location = new System.Drawing.Point(422, 276);
             this.rtbFileContains.Name = "rtbFileContains";
             this.rtbFileContains.ShowSelectionMargin = true;
-            this.rtbFileContains.Size = new System.Drawing.Size(411, 164);
+            this.rtbFileContains.Size = new System.Drawing.Size(411, 179);
             this.rtbFileContains.TabIndex = 6;
             this.rtbFileContains.Text = "";
             // 
             // label2
             // 
-            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(419, 275);
+            this.label2.Location = new System.Drawing.Point(419, 260);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(116, 13);
             this.label2.TabIndex = 7;
@@ -242,11 +240,6 @@
             // GeoSetBS
             // 
             this.GeoSetBS.DataSource = typeof(GEOArchive.Entity.GeoSet);
-            // 
-            // GeoFilesBS
-            // 
-            this.GeoFilesBS.DataMember = "Files";
-            this.GeoFilesBS.DataSource = typeof(GEOArchive.Entity.GeoSet);
             // 
             // GeoSetView
             // 
@@ -263,7 +256,6 @@
             this.gbInfo.ResumeLayout(false);
             this.gbInfo.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.GeoSetBS)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.GeoFilesBS)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -285,10 +277,9 @@
         private System.Windows.Forms.RichTextBox tbGeoSetName;
         private System.Windows.Forms.TextBox tbGeoSetNum;
         private System.Windows.Forms.Button btnAttachFiles;
-        private System.Windows.Forms.BindingSource GeoSetBS;
-        private System.Windows.Forms.BindingSource GeoFilesBS;
         private System.Windows.Forms.ImageList fileIcons;
-        private System.Windows.Forms.RichTextBox rtbFileContains;
         private System.Windows.Forms.Label label2;
+        public System.Windows.Forms.BindingSource GeoSetBS;
+        private System.Windows.Forms.RichTextBox rtbFileContains;
     }
 }

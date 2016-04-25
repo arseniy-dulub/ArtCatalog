@@ -21,11 +21,16 @@ namespace GEOArchive.UserControls
         public GeoSetView()
         {
             InitializeComponent();
-            GeoSetBS.DataSource = new GeoSet() { Files = new List<GeoFile>() };
+            GeoSetBS.DataSource = new GeoSet();
             btnAttachFiles.Click += BtnAttachFiles_Click;
             lvFiles.SelectedIndexChanged += LvFiles_SelectedIndexChanged;
+            GeoSetBS.CurrentChanged += GeoSetBS_CurrentChanged;
         }
 
+        private void GeoSetBS_CurrentChanged(object sender, EventArgs e)
+        {
+            rtbFileContains.Clear();
+        }
 
         private void BtnAttachFiles_Click(object sender, EventArgs e)
         {
@@ -38,46 +43,64 @@ namespace GEOArchive.UserControls
 
         private void OfdAttachFiles_FileOk(object sender, CancelEventArgs e)
         {
-            int lastId;
-
-            using (var db = new GeoSetContext())
+            //try
             {
-                lastId = db.GeoSets.ToList().Last().GeoSetId;
+                List<GeoFile> FilesToAdd = FileManager.GenarateGeoFileList(ofdAttachFiles.FileNames);
+
+                if (Parent.GetType() == typeof(AddingProjectForm))
+                {
+                    (GeoSetBS.DataSource as GeoSet).Files = new List<GeoFile>();
+                    (GeoSetBS.DataSource as GeoSet).Files.AddRange(FilesToAdd);
+                    AddFilesToListBox(FilesToAdd);
+                }
+                else if (Parent.GetType() == typeof(MainForm))
+                {
+                    using (var db = new GeoSetContext())
+                    {
+                        db.GeoSets.Find((GeoSetBS.DataSource as GeoSet).GeoSetId).Files.AddRange(FilesToAdd);
+                        db.SaveChanges();
+                        AddFilesToListBox(FilesToAdd);
+                    }
+                }
             }
-
-            List<GeoFile> filesToAdd = new List<GeoFile>();
-
-            foreach (var file in ofdAttachFiles.FileNames)
+            //catch (Exception ex)
             {
-                FileInfo pFile = new FileInfo(file);
-
-                GeoFile newGeoFile = new GeoFile();
-                newGeoFile.GeoSetId = lastId + 1;
-                newGeoFile.GeoFileDateCreate = pFile.CreationTime.ToShortDateString();
-                newGeoFile.GeoFilePath = pFile.FullName;
-                newGeoFile.GeoFileType = pFile.Extension;
-                filesToAdd.Add(newGeoFile);
-                lvFiles.Items.Add(GenerateListBoxItem(newGeoFile));
+            //    MessageBox.Show(ex.Message + '\n' + ex.InnerException);
             }
+        }
 
-            (GeoSetBS.DataSource as GeoSet).Files.AddRange(filesToAdd);
-            
+        public void AddFilesToListBox(IEnumerable<GeoFile> files)
+        {
+            foreach (var file in files)
+            {
+                lvFiles.Items.Add(GenerateListBoxItem(file));
+            }
         }
 
         private void LvFiles_SelectedIndexChanged(object sender, EventArgs e)
         {
             rtbFileContains.Clear();
-            try {
-                rtbFileContains.Text += GeoFileReader.IndentifyGeoFile(
-                    ((GeoSetBS.DataSource as GeoSet).Files.Find(file =>
-                            FileManager.GetFileNameWithExtensionFromPath(file.GeoFilePath) ==
-                            lvFiles.SelectedItems[0].Text))
-                    );
+            try
+            {
+                GeoSet currentSet;
+
+                using (var db = new GeoSetContext())
+                {
+                    currentSet = db.GeoSets.Find((GeoSetBS.DataSource as GeoSet).GeoSetId);
+
+                    if (currentSet != null)
+                    rtbFileContains.Text += GeoFileReader.IndentifyGeoFile(
+                        (currentSet.Files.Find(file =>
+                                FileManager.GetFileNameWithExtensionFromPath(file.GeoFilePath) ==
+                                lvFiles.SelectedItems[0].Text))
+                        );
+                }
             }
             catch { }
+            
         }
 
-        public GeoSet GetFilledFields()
+        public GeoSet GetCurrentGeoSet()
         {
             return GeoSetBS.DataSource as GeoSet;
         }
@@ -89,42 +112,23 @@ namespace GEOArchive.UserControls
             result.Text = FileManager.GetFileNameWithExtensionFromPath(file.GeoFilePath);
             result.ToolTipText = FileManager.GetFileFullType(file);
 
-            switch (file.GeoFileType)
-            {
-                case ".xgeoobj":
-                    {
-                        result.ImageIndex = 0;
-                        break;
-                    }
-                case ".xgeolab":
-                    {
-                        result.ImageIndex = 0;
-                        break;
-                    }
-                case ".labdata":
-                    {
-                        result.ImageIndex = 0;
-                        break;
-                    }
-                case ".igelist":
-                    {
-                        result.ImageIndex = 0;
-                        break;
-                    }
-                case ".cutlist":
-                    {
-                        result.ImageIndex = 0;
-                        break;
-                    }
-                default:
-                    {
-                        result.ImageIndex = 1;
-                        break;
-                    }
+            List<string> fileExts = new List<string>(){".xgeoobj",".xgeolab", ".labdata",".igelist",".cutlist"};
 
-            }
+            if (fileExts.Contains(file.GeoFileType))
+                result.ImageIndex = 0;
+            else result.ImageIndex = 1;           
 
             return result;
+        }
+
+        public void Fill(GeoSet currentGeoSet)
+        {
+            GeoSetBS.DataSource = currentGeoSet;
+            lvFiles.Clear();
+            using (var db = new GeoSetContext())
+            {
+                AddFilesToListBox(db.GeoFiles.Where(file => file.GeoSetId == currentGeoSet.GeoSetId));
+            }
         }
     }
 }

@@ -32,9 +32,11 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.tsbAddProject = new System.Windows.Forms.ToolStripButton();
+            this.tsbDeleteProject = new System.Windows.Forms.ToolStripButton();
             this.lbProjects = new System.Windows.Forms.ListBox();
             this.GeoSetBS = new System.Windows.Forms.BindingSource(this.components);
             this.label1 = new System.Windows.Forms.Label();
+            this.geoSetView1 = new GEOArchive.UserControls.GeoSetView();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.GeoSetBS)).BeginInit();
             this.SuspendLayout();
@@ -42,7 +44,8 @@
             // toolStrip1
             // 
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsbAddProject});
+            this.tsbAddProject,
+            this.tsbDeleteProject});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(1008, 38);
@@ -54,9 +57,18 @@
             this.tsbAddProject.Image = ((System.Drawing.Image)(resources.GetObject("tsbAddProject.Image")));
             this.tsbAddProject.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbAddProject.Name = "tsbAddProject";
-            this.tsbAddProject.Size = new System.Drawing.Size(104, 35);
-            this.tsbAddProject.Text = "Добавить проект";
+            this.tsbAddProject.Size = new System.Drawing.Size(63, 35);
+            this.tsbAddProject.Text = "Добавить";
             this.tsbAddProject.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            // 
+            // tsbDeleteProject
+            // 
+            this.tsbDeleteProject.Image = ((System.Drawing.Image)(resources.GetObject("tsbDeleteProject.Image")));
+            this.tsbDeleteProject.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbDeleteProject.Name = "tsbDeleteProject";
+            this.tsbDeleteProject.Size = new System.Drawing.Size(55, 35);
+            this.tsbDeleteProject.Text = "Удалить";
+            this.tsbDeleteProject.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             // 
             // lbProjects
             // 
@@ -82,16 +94,28 @@
             this.label1.TabIndex = 3;
             this.label1.Text = "Проекты:";
             // 
+            // geoSetView1
+            // 
+            this.geoSetView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.geoSetView1.Location = new System.Drawing.Point(162, 41);
+            this.geoSetView1.Name = "geoSetView1";
+            this.geoSetView1.Size = new System.Drawing.Size(843, 670);
+            this.geoSetView1.TabIndex = 4;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1008, 730);
+            this.Controls.Add(this.geoSetView1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.lbProjects);
             this.Controls.Add(this.toolStrip1);
             this.Name = "MainForm";
             this.Text = "Архив проектов";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.GeoSetBS)).EndInit();
@@ -107,6 +131,8 @@
         private System.Windows.Forms.ListBox lbProjects;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.BindingSource GeoSetBS;
+        private System.Windows.Forms.ToolStripButton tsbDeleteProject;
+        private UserControls.GeoSetView geoSetView1;
     }
 }
 
