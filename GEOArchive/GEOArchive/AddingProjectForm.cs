@@ -18,6 +18,12 @@ namespace GEOArchive
         {
             InitializeComponent();
             btnOK.Click += BtnOK_Click;
+            btnCancel.Click += BtnCancel_Click;
+        }
+
+        private void BtnCancel_Click(object sender, EventArgs e)
+        {
+            Close();
         }
 
         private void BtnOK_Click(object sender, EventArgs e)

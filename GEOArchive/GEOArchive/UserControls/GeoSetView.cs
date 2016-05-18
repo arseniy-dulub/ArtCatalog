@@ -23,9 +23,10 @@ namespace GEOArchive.UserControls
             InitializeComponent();
             GeoSetBS.DataSource = new GeoSet();
             btnAttachFiles.Click += BtnAttachFiles_Click;
+            btnDeleteFile.Click += BtnDeleteFile_Click;
             lvFiles.SelectedIndexChanged += LvFiles_SelectedIndexChanged;
             GeoSetBS.CurrentChanged += GeoSetBS_CurrentChanged;
-        }
+        }       
 
         private void GeoSetBS_CurrentChanged(object sender, EventArgs e)
         {
@@ -42,30 +43,60 @@ namespace GEOArchive.UserControls
         }
 
         private void OfdAttachFiles_FileOk(object sender, CancelEventArgs e)
-        {
-            //try
-            {
-                List<GeoFile> FilesToAdd = FileManager.GenarateGeoFileList(ofdAttachFiles.FileNames);
+        {          
+            List<GeoFile> FilesToAdd = FileManager.GenarateGeoFileList(ofdAttachFiles.FileNames);
 
-                if (Parent.GetType() == typeof(AddingProjectForm))
+            if (Parent.GetType() == typeof(AddingProjectForm))
+            {
+                (GeoSetBS.DataSource as GeoSet).Files = new List<GeoFile>();
+                (GeoSetBS.DataSource as GeoSet).Files.AddRange(FilesToAdd);
+                AddFilesToListBox(FilesToAdd);
+            }
+            else if (Parent.GetType() == typeof(MainForm))
+            {
+                using (var db = new GeoSetContext())
                 {
-                    (GeoSetBS.DataSource as GeoSet).Files = new List<GeoFile>();
-                    (GeoSetBS.DataSource as GeoSet).Files.AddRange(FilesToAdd);
+                    db.GeoSets.Find((GeoSetBS.DataSource as GeoSet).GeoSetId).Files.AddRange(FilesToAdd);
+                    db.SaveChanges();
                     AddFilesToListBox(FilesToAdd);
                 }
-                else if (Parent.GetType() == typeof(MainForm))
+            }            
+        }
+
+        private void BtnDeleteFile_Click(object sender, EventArgs e)
+        {
+            if (lvFiles.SelectedItems.Count > 0)
+            {
+                if (lvFiles.SelectedItems[0].Focused)
                 {
+                    GeoSet currentSet;
+
                     using (var db = new GeoSetContext())
                     {
-                        db.GeoSets.Find((GeoSetBS.DataSource as GeoSet).GeoSetId).Files.AddRange(FilesToAdd);
-                        db.SaveChanges();
-                        AddFilesToListBox(FilesToAdd);
+                        currentSet = db.GeoSets.Find((GeoSetBS.DataSource as GeoSet).GeoSetId);
+
+                        if (currentSet != null)
+                        {
+                            GeoFile currentFile = currentSet.Files.Find(file =>
+                                    FileManager.GetFileNameWithExtensionFromPath(file.GeoFilePath) ==
+                                    lvFiles.SelectedItems[0].Text);
+
+                            DialogResult dr = MessageBox.Show("Вы дейсвительно ходите удалить " +
+                                FileManager.GetFileNameWithExtensionFromPath(currentFile.GeoFilePath) + "?",
+                                "GEOArchive: Удаление файла",
+                                MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation);
+
+                            if (dr == DialogResult.Yes)
+                            {
+                                db.GeoFiles.Remove(currentFile);
+                                db.SaveChanges();
+                                lvFiles.Items.Remove(lvFiles.SelectedItems[0]);
+                            }
+                        }
                     }
                 }
-            }
-            //catch (Exception ex)
-            {
-            //    MessageBox.Show(ex.Message + '\n' + ex.InnerException);
+                else MessageBox.Show("Файл не выбран.", "GEOArchive: Удаление файла",
+                    MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
         }
 
@@ -97,7 +128,6 @@ namespace GEOArchive.UserControls
                 }
             }
             catch { }
-            
         }
 
         public GeoSet GetCurrentGeoSet()

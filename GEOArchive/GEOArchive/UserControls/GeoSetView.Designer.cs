@@ -44,9 +44,11 @@
             this.lvFiles = new System.Windows.Forms.ListView();
             this.fileIcons = new System.Windows.Forms.ImageList(this.components);
             this.label1 = new System.Windows.Forms.Label();
-            this.btnAttachFiles = new System.Windows.Forms.Button();
             this.rtbFileContains = new System.Windows.Forms.RichTextBox();
             this.label2 = new System.Windows.Forms.Label();
+            this.btnDowload = new System.Windows.Forms.Button();
+            this.btnDeleteFile = new System.Windows.Forms.Button();
+            this.btnAttachFiles = new System.Windows.Forms.Button();
             this.GeoSetBS = new System.Windows.Forms.BindingSource(this.components);
             this.gbInfo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.GeoSetBS)).BeginInit();
@@ -205,16 +207,6 @@
             this.label1.TabIndex = 2;
             this.label1.Text = "Состав проекта:";
             // 
-            // btnAttachFiles
-            // 
-            this.btnAttachFiles.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnAttachFiles.Location = new System.Drawing.Point(15, 234);
-            this.btnAttachFiles.Name = "btnAttachFiles";
-            this.btnAttachFiles.Size = new System.Drawing.Size(133, 23);
-            this.btnAttachFiles.TabIndex = 5;
-            this.btnAttachFiles.Text = "Добавить файл(ы)";
-            this.btnAttachFiles.UseVisualStyleBackColor = true;
-            // 
             // rtbFileContains
             // 
             this.rtbFileContains.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
@@ -237,6 +229,46 @@
             this.label2.TabIndex = 7;
             this.label2.Text = "Содержримое файла:";
             // 
+            // btnDowload
+            // 
+            this.btnDowload.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnDowload.Image = global::GEOArchive.Properties.Resources.down;
+            this.btnDowload.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnDowload.Location = new System.Drawing.Point(217, 234);
+            this.btnDowload.Name = "btnDowload";
+            this.btnDowload.Size = new System.Drawing.Size(95, 23);
+            this.btnDowload.TabIndex = 9;
+            this.btnDowload.Text = "Скачать";
+            this.btnDowload.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnDowload.UseVisualStyleBackColor = true;
+            this.btnDowload.Visible = false;
+            // 
+            // btnDeleteFile
+            // 
+            this.btnDeleteFile.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnDeleteFile.Image = global::GEOArchive.Properties.Resources.crossout;
+            this.btnDeleteFile.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnDeleteFile.Location = new System.Drawing.Point(116, 234);
+            this.btnDeleteFile.Name = "btnDeleteFile";
+            this.btnDeleteFile.Size = new System.Drawing.Size(95, 23);
+            this.btnDeleteFile.TabIndex = 8;
+            this.btnDeleteFile.Text = "Удалить";
+            this.btnDeleteFile.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnDeleteFile.UseVisualStyleBackColor = true;
+            // 
+            // btnAttachFiles
+            // 
+            this.btnAttachFiles.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnAttachFiles.Image = global::GEOArchive.Properties.Resources.attachment;
+            this.btnAttachFiles.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnAttachFiles.Location = new System.Drawing.Point(15, 234);
+            this.btnAttachFiles.Name = "btnAttachFiles";
+            this.btnAttachFiles.Size = new System.Drawing.Size(95, 23);
+            this.btnAttachFiles.TabIndex = 5;
+            this.btnAttachFiles.Text = "Прикрепить";
+            this.btnAttachFiles.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnAttachFiles.UseVisualStyleBackColor = true;
+            // 
             // GeoSetBS
             // 
             this.GeoSetBS.DataSource = typeof(GEOArchive.Entity.GeoSet);
@@ -245,6 +277,8 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.btnDowload);
+            this.Controls.Add(this.btnDeleteFile);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.rtbFileContains);
             this.Controls.Add(this.btnAttachFiles);
@@ -281,5 +315,7 @@
         private System.Windows.Forms.Label label2;
         public System.Windows.Forms.BindingSource GeoSetBS;
         private System.Windows.Forms.RichTextBox rtbFileContains;
+        public System.Windows.Forms.Button btnDeleteFile;
+        public System.Windows.Forms.Button btnDowload;
     }
 }

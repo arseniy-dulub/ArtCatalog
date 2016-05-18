@@ -71,8 +71,12 @@
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnOK);
             this.Controls.Add(this.geoSetView1);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "AddingProjectForm";
-            this.Text = "AddingProjectForm";
+            this.ShowIcon = false;
+            this.ShowInTaskbar = false;
+            this.Text = "Заполните необходимую информацию";
             this.ResumeLayout(false);
 
         }

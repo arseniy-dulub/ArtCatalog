@@ -28,6 +28,8 @@ namespace GEOArchive
             GeoSetBS.CurrentChanged += GeoSetBS_CurrentChanged;
 
             InitializeProjectList();
+
+            geoSetView1.btnDowload.Visible = true;
         }
 
         private void TsbDeleteProject_Click(object sender, EventArgs e)

@@ -48,36 +48,36 @@
             this.tsbDeleteProject});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(1008, 38);
+            this.toolStrip1.Size = new System.Drawing.Size(1008, 25);
             this.toolStrip1.TabIndex = 0;
             this.toolStrip1.Text = "toolStrip1";
             // 
             // tsbAddProject
             // 
-            this.tsbAddProject.Image = ((System.Drawing.Image)(resources.GetObject("tsbAddProject.Image")));
+            this.tsbAddProject.Image = global::GEOArchive.Properties.Resources.add;
             this.tsbAddProject.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbAddProject.Name = "tsbAddProject";
-            this.tsbAddProject.Size = new System.Drawing.Size(63, 35);
+            this.tsbAddProject.Size = new System.Drawing.Size(79, 22);
             this.tsbAddProject.Text = "Добавить";
-            this.tsbAddProject.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             // 
             // tsbDeleteProject
             // 
-            this.tsbDeleteProject.Image = ((System.Drawing.Image)(resources.GetObject("tsbDeleteProject.Image")));
+            this.tsbDeleteProject.Image = global::GEOArchive.Properties.Resources.del;
             this.tsbDeleteProject.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbDeleteProject.Name = "tsbDeleteProject";
-            this.tsbDeleteProject.Size = new System.Drawing.Size(55, 35);
+            this.tsbDeleteProject.Size = new System.Drawing.Size(71, 22);
             this.tsbDeleteProject.Text = "Удалить";
-            this.tsbDeleteProject.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             // 
             // lbProjects
             // 
             this.lbProjects.DataSource = this.GeoSetBS;
             this.lbProjects.DisplayMember = "GeoSetNum";
+            this.lbProjects.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.lbProjects.FormattingEnabled = true;
+            this.lbProjects.ItemHeight = 16;
             this.lbProjects.Location = new System.Drawing.Point(12, 57);
             this.lbProjects.Name = "lbProjects";
-            this.lbProjects.Size = new System.Drawing.Size(144, 654);
+            this.lbProjects.Size = new System.Drawing.Size(144, 644);
             this.lbProjects.TabIndex = 2;
             this.lbProjects.ValueMember = "GeoSetId";
             // 
@@ -88,9 +88,10 @@
             // label1
             // 
             this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label1.Location = new System.Drawing.Point(12, 41);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(55, 13);
+            this.label1.Size = new System.Drawing.Size(68, 16);
             this.label1.TabIndex = 3;
             this.label1.Text = "Проекты:";
             // 
@@ -99,9 +100,9 @@
             this.geoSetView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.geoSetView1.Location = new System.Drawing.Point(162, 41);
+            this.geoSetView1.Location = new System.Drawing.Point(165, 41);
             this.geoSetView1.Name = "geoSetView1";
-            this.geoSetView1.Size = new System.Drawing.Size(843, 670);
+            this.geoSetView1.Size = new System.Drawing.Size(843, 677);
             this.geoSetView1.TabIndex = 4;
             // 
             // MainForm
@@ -113,6 +114,8 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.lbProjects);
             this.Controls.Add(this.toolStrip1);
+            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "MainForm";
             this.Text = "Архив проектов";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
