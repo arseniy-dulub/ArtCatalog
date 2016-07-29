@@ -1,0 +1,55 @@
+﻿@model IEnumerable<ArtCatalog.Models.Product>
+
+<div class="container-fluid">
+    <div class="row col-md-offset-1">
+        @Html.ActionLink("Добавить новую работу", "Create", null, new { @class = "btn btn-primary" })
+    </div>
+    <div class="row">
+        @foreach (var item in Model)
+        {
+            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                <div class="col-md-6">
+                    <img src="@item.ThumbinalPath" alt="Изображение не найдено." class="img-thumbnail" />
+                </div>
+                <dl class="dl-horizontal col-md-4">
+                    <dt>
+                        @Html.DisplayNameFor(model => model.ProductName)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(modelItem => item.ProductName)
+                    </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Categ.CategoryName)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(modelItem => item.Categ.CategoryName)
+                    </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.ProductDescription)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(modelItem => item.ProductDescription)
+                    </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.ProducedAt)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(modelItem => item.ProducedAt)
+                    </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Size)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(modelItem => item.Size)
+                    </dd>
+                </dl>
+                <div class="col-md-3">
+                    @Html.ActionLink("Редактировать", "Edit", new { id = item.ProductID }, new { @class = "btn btn-default btn-sm" })
+                </div>
+                <div class="col-md-3">
+                    @Html.ActionLink("Удалить", "Delete", new { id = item.ProductID }, new { @class = "btn btn-danger btn-sm" })
+                </div>
+            </div>
+        }       
+    </div>
+</div>
