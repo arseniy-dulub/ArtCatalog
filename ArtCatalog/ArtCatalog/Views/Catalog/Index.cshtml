@@ -27,13 +27,26 @@
     </div>
 </nav>
 
-<ul class="content">
-    @foreach (var item in Model)
-    {
-        <li class="imgPicture">
-            <a class="group3" href="@Url.Content(item.OriginalPath)" title="@item.ProductName">
-                <img src="@Url.Content(item.ThumbinalPath)" />
-            </a>
-        </li>
-    }
-</ul>
+<div class="container">
+    <div class="row">
+        @foreach (var item in Model)
+        {
+            <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
+                
+                    <a class="group3" href="@Url.Content(item.OriginalPath)" title="@item.ProductName">
+                        <img src="@Url.Content(item.ThumbinalPath)" alt="Изображение не найдено." class="img-thumbnail"/>
+                    </a>
+                   
+                <h4>@item.ProductName</h4>
+                <p>
+                    @Html.DisplayFor(modelItem => item.ProductDescription)
+                    @Html.DisplayFor(modelItem => item.ProducedAt)
+                    @Html.DisplayFor(modelItem => item.Size)
+                </p>
+                   
+                
+            </div>
+
+        }
+    </div>
+</div>

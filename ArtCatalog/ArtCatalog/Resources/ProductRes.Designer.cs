@@ -88,7 +88,7 @@ namespace ArtCatalog.Resources {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Дата создания.
+        ///   Ищет локализованную строку, похожую на Год создания.
         /// </summary>
         public static string ProducedAt {
             get {

@@ -168,10 +168,12 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\colorbox.css" />
     <Content Include="Content\fineuploader.css" />
+    <Content Include="Content\images\background_canvas.jpg" />
     <Content Include="Content\images\border.png" />
     <Content Include="Content\images\border1.png" />
     <Content Include="Content\images\border2.png" />
     <Content Include="Content\images\controls.png" />
+    <Content Include="Content\images\headLine.jpg" />
     <Content Include="Content\images\loading.gif" />
     <Content Include="Content\images\loading_background.png" />
     <Content Include="Content\images\processing.gif" />

@@ -127,7 +127,7 @@
     <value>Название работы</value>
   </data>
   <data name="ProducedAt" xml:space="preserve">
-    <value>Дата создания</value>
+    <value>Год создания</value>
   </data>
   <data name="Size" xml:space="preserve">
     <value>Размер</value>
