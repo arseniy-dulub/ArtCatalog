@@ -48,7 +48,7 @@ namespace ArtCatalog
                       );
 
             bundles.Add(new StyleBundle("~/Content/css/fineuploader")
-                  .Include("~/Content/fineuploader.css"));
+                  .Include("~/Content/fine-uploader.css"));
 
             bundles.Add(new StyleBundle("~/Content/css/colorbox").
                 Include("~/Content/colorbox.css"));

@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Class that creates upload widget with drag-and-drop and file list
  * @inherits qq.FineUploaderBasic
  */
@@ -16,15 +16,15 @@ qq.FineUploader = function(o){
             disableDefaultDropzone: false
         },
         text: {
-            uploadButton: 'Upload a file',
-            cancelButton: 'Cancel',
-            retryButton: 'Retry',
-            deleteButton: 'Delete',
-            failUpload: 'Upload failed',
-            dragZone: 'Drop files here to upload',
-            dropProcessing: 'Processing dropped files...',
-            formatProgress: "{percent}% of {total_size}",
-            waitingForResponse: "Processing..."
+            uploadButton: 'Выберите файл',
+            cancelButton: 'Отмена',
+            retryButton: 'Повторить',
+            deleteButton: 'Удалить',
+            failUpload: 'Загрузка прервалась',
+            dragZone: 'Перенесите файлы сюда для загруки',
+            dropProcessing: 'Процесс загрузки файлов...',
+            formatProgress: "{percent}% из {total_size}",
+            waitingForResponse: "Загрузка..."
         },
         template: '<div class="qq-uploader">' +
             ((!this._options.dragAndDrop || !this._options.dragAndDrop.disableDefaultDropzone) ? '<div class="qq-upload-drop-area"><span>{dragZoneText}</span></div>' : '') +
