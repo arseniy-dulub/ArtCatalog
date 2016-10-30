@@ -26,29 +26,10 @@ namespace ArtCatalog
             bundles.Add(new ScriptBundle("~/bundles/common").Include(
                         "~/Scripts/common.js"));
 
-            bundles.Add(new ScriptBundle("~/bundles/fineuploader").Include(
-                     "~/Scripts/fine-uploader/header.js",
-                     "~/Scripts/fine-uploader/util.js",
-                     "~/Scripts/fine-uploader/button.js",
-                     "~/Scripts/fine-uploader/ajax.requester.js",
-                     "~/Scripts/fine-uploader/deletefile.ajax.requester.js",
-                     "~/Scripts/fine-uploader/handler.base.js",
-                     "~/Scripts/fine-uploader/window.receive.message.js",
-                     "~/Scripts/fine-uploader/handler.form.js",
-                     "~/Scripts/fine-uploader/handler.xhr.js",
-                     "~/Scripts/fine-uploader/uploader.basic.js",
-                     "~/Scripts/fine-uploader/dnd.js",
-                     "~/Scripts/fine-uploader/uploader.js",
-                     "~/Scripts/fine-uploader/jquery-plugin.js")
-                     );
-
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/Site.css",
                       "~/Content/bootstrap.css")
                       );
-
-            bundles.Add(new StyleBundle("~/Content/css/fineuploader")
-                  .Include("~/Content/fine-uploader.css"));
 
             bundles.Add(new StyleBundle("~/Content/css/colorbox").
                 Include("~/Content/colorbox.css"));
@@ -58,6 +39,10 @@ namespace ArtCatalog
                 "~/Scripts/colorbox/jquery.colorbox.js",
                 "~/Scripts/colorbox/colorbox-viewer.js"
                 ));
+
+            bundles.Add(new ScriptBundle("~/bundles/angular").Include(
+                      "~/Scripts/angular/vendor/angular.min.js",
+                      "~/Scripts/angular/app/app.js"));
         }
     }
 }

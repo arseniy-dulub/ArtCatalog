@@ -1,14 +1,5 @@
 ﻿@model ArtCatalog.Models.Product
 
-@section styles {
-    @Styles.Render("~/Content/css/fineuploader")
-}
-
-@section scripts {
-    @Scripts.Render("~/bundles/fineuploader")
-    @Scripts.Render("~/Scripts/admin/file-create.js")
-}
-
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()

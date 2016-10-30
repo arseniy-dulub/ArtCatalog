@@ -167,7 +167,6 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\colorbox.css" />
-    <Content Include="Content\fine-uploader.css" />
     <Content Include="Content\images\background_canvas.jpg" />
     <Content Include="Content\images\border.png" />
     <Content Include="Content\images\border1.png" />
@@ -183,6 +182,8 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Scripts\angular\app\app.js" />
+    <Content Include="Scripts\angular\vendor\angular.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Areas\Admin\Views\web.config" />
@@ -200,25 +201,10 @@
     <Content Include="Scripts\colorbox\bower.json" />
     <Content Include="Scripts\colorbox\colorbox.ai" />
     <Content Include="Scripts\colorbox\package.json" />
-    <Content Include="Scripts\admin\file-create.js" />
     <Content Include="Scripts\colorbox\colorbox-viewer.js" />
     <Content Include="Scripts\colorbox\jquery.colorbox-min.js" />
     <Content Include="Scripts\colorbox\jquery.colorbox.js" />
     <Content Include="Scripts\common.js" />
-    <Content Include="Scripts\fine-uploader\ajax.requester.js" />
-    <Content Include="Scripts\fine-uploader\button.js" />
-    <Content Include="Scripts\fine-uploader\deletefile.ajax.requester.js" />
-    <Content Include="Scripts\fine-uploader\dnd.js" />
-    <Content Include="Scripts\fine-uploader\handler.base.js" />
-    <Content Include="Scripts\fine-uploader\handler.form.js" />
-    <Content Include="Scripts\fine-uploader\handler.xhr.js" />
-    <Content Include="Scripts\fine-uploader\header.js" />
-    <Content Include="Scripts\fine-uploader\iframe.xss.response.js" />
-    <Content Include="Scripts\fine-uploader\jquery-plugin.js" />
-    <Content Include="Scripts\fine-uploader\uploader.basic.js" />
-    <Content Include="Scripts\fine-uploader\uploader.js" />
-    <Content Include="Scripts\fine-uploader\util.js" />
-    <Content Include="Scripts\fine-uploader\window.receive.message.js" />
     <None Include="Scripts\jquery-3.1.0.intellisense.js" />
     <Content Include="Scripts\jquery-3.1.0.js" />
     <Content Include="Scripts\jquery-3.1.0.min.js" />
@@ -260,7 +246,6 @@
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="packages.config" />
-    <None Include="Project_Readme.html" />
     <Content Include="Scripts\jquery-3.1.0.slim.min.map" />
     <Content Include="Scripts\jquery-3.1.0.min.map" />
   </ItemGroup>

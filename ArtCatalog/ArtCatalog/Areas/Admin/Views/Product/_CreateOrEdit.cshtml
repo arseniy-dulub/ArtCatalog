@@ -1,31 +1,16 @@
 ﻿@model ArtCatalog.Models.Product
 
-@section styles {
-    @Styles.Render("~/Content/css/fineuploader")
-}
-
-@section scripts {
-    @Scripts.Render("~/bundles/fineuploader")
-    @Scripts.Render("~/Scripts/admin/file-create.js")
-}
-
-<fieldset>
-    <div class="form-group">
-        <label class="control-label col-md-2" for="Text">
-            Изображение
-        </label>
-        <div>
-            <div id="UploadImage">
-                Upload
-            </div>
-        </div>
+<div class="form-group">
+    <label for="uplImage" class="control-label col-md-2">Изображение</label>
+    <div class="col-md-10">
+        <input name="uplImage" type="file" accept="image/jpeg" ng-file-select="onFileSelect($files)" />
+        <img ng-src="{{imageSrc}}" alt="" width="300" />
     </div>
-    <div>
-        <img src="@Model.ThumbinalPath" alt="" id="ImagePreview" />
-        @Html.Hidden("OriginalPath", Model.OriginalPath, new { id = "ImageOriginalPath" })
-        @Html.Hidden("ThumbinalPath", Model.ThumbinalPath, new { id = "ImagePreviewPath" })
-    </div>
-</fieldset>
+</div>
+<div>
+    @Html.Hidden("OriginalPath", Model.OriginalPath, new { id = "ImageOriginalPath" })
+    @Html.Hidden("ThumbinalPath", Model.ThumbinalPath, new { id = "ImagePreviewPath" })
+</div>
 
 <div class="form-group">
     @Html.LabelFor(model => model.ProductName, htmlAttributes: new { @class = "control-label col-md-2" })

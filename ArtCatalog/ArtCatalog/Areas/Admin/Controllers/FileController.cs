@@ -17,20 +17,22 @@ namespace ArtCatalog.Areas.Admin.Controllers
             return View();
         }
 
-        public ActionResult Upload(HttpPostedFileWrapper qqfile)
+        // POST: File/Upload
+        [HttpPost]
+        public ActionResult Upload(HttpPostedFileWrapper uplFile)
         {
             try
             {
-                var filePath = Path.Combine("/Content/files", qqfile.FileName);
+                var filePath = $"/Content/files/{uplFile.FileName}";
 
-                qqfile.SaveAs(Server.MapPath(filePath));
+                uplFile.SaveAs(Server.MapPath(filePath));
 
-                var filePreviewPath = Path.Combine("/Content/files/previews", qqfile.FileName);
+                var filePreviewPath = $"/Content/files/previews/{uplFile.FileName}";
                 var previewIconSize = new Size(300, 225);
                 if (previewIconSize != null)
                 {
                     PreviewCreator.CreateAndSavePreview(
-                        qqfile.InputStream, 
+                        uplFile.InputStream, 
                         new Size(previewIconSize.Width, previewIconSize.Height),
                         Server.MapPath(filePreviewPath));
                 }

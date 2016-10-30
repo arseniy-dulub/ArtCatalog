@@ -25,7 +25,7 @@ namespace ArtCatalog
                 defaults: new { controller = "Catalog", action = "Index", id = UrlParameter.Optional },
                 namespaces: new string[] { "ArtCatalog.Controllers" },
                 constraints: new { id = @"\d+" }
-            );
+            );            
         }
     }
 }
