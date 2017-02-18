@@ -7,7 +7,6 @@
     <title>@ViewBag.Title</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
-    @RenderSection("styles", required: false)
 </head>
 <body ng-controller="UploadController">
     <div class="navbar navbar-inverse navbar-static-top">
@@ -16,6 +15,8 @@
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Работы", "Index", "Product")</li>
                     <li>@Html.ActionLink("Категории", "Index", "Category")</li>
+                    <li>@Html.ActionLink("Tags", "Index", "Tags")</li>
+                    <li>@Html.ActionLink("Выйти", "LogOff", "Account")</li>
                 </ul>
             </div>
         </div>
@@ -29,10 +30,5 @@
     </footer>
     
     <div id="PopupWrapper"></div>
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-    @Scripts.Render("~/bundles/common")
-    @Scripts.Render("~/bundles/angular")
-    @RenderSection("scripts", required: false)
 </body>
 </html>

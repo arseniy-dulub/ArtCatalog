@@ -35,5 +35,7 @@ namespace ArtCatalog.Models
         
         [Display(Name = "Name", ResourceType = typeof(CategoryRes))]
         public virtual Category Categ { get; set; } 
+
+        public virtual ICollection<Tag> Tags { get; set; }
     }
 }

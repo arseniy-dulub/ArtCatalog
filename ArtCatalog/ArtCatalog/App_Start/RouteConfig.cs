@@ -18,14 +18,14 @@ namespace ArtCatalog
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Catalog", action = "Index", id = UrlParameter.Optional }
             );
-
-            routes.MapRoute(
-                name: "Catalog",
-                url: "{id}",
-                defaults: new { controller = "Catalog", action = "Index", id = UrlParameter.Optional },
-                namespaces: new string[] { "ArtCatalog.Controllers" },
-                constraints: new { id = @"\d+" }
-            );            
+            
+            //routes.MapRoute(
+            //    name: "Catalog",
+            //    url: "{id}",
+            //    defaults: new { controller = "Catalog", action = "Index", id = UrlParameter.Optional },
+            //    namespaces: new string[] { "ArtCatalog.Controllers" },
+            //    constraints: new { id = @"\d+" }
+            //);            
         }
     }
 }

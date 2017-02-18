@@ -43,6 +43,28 @@ namespace ArtCatalog
             bundles.Add(new ScriptBundle("~/bundles/angular").Include(
                       "~/Scripts/angular/vendor/angular.min.js",
                       "~/Scripts/angular/app/app.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/tokenfield").Include(
+                    "~/Scripts/bootstrap-tokenfield/bootstrap-tokenfield.min.js"
+                ));
+
+            bundles.Add(new StyleBundle("~/Content/tokenfield").Include(
+                "~/Content/bootstrap-tokenfield/tokenfield-typeahead.min.css",
+                "~/Content/bootstrap-tokenfield/bootstrap-tokenfield.min.css"
+                ));
+
+            bundles.Add(new ScriptBundle("~/bundles/typeahead").Include(
+                    "~/Scripts/typeahead/bloodhound.min.js",
+                    "~/Scripts/typeahead/typeahead.jquery.min.js",
+                    "~/Scripts/typeahead/typeahead.bundle.min.js"
+                ));
+
+            bundles.Add(new ScriptBundle("~/bundles/jquery-ui").Include(
+                "~/Scripts/jquery-ui-1.10.1.custom.min.js"
+                ));
+
+            bundles.Add(new StyleBundle("~/Content/jquery-ui/css").Include(
+                "~/Content/jquery-ui-1.10.1.custom.min.css"));
         }
     }
 }

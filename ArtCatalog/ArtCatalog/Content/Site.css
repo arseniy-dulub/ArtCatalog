@@ -41,9 +41,23 @@ textarea {
   box-shadow: 8px 8px 4px -1px #5e524a;
   }
 
-  .imgPicture img { 
+.imgPicture img { 
   width: 250px; 
   border: none; 
   margin: 0; 
   padding: 0;   
   }
+
+/*#navbar-background-image {
+    background-image: url(images/headLine.jpg);
+}*/
+
+.background-line { 
+    background: url(images/headLine.jpg) repeat-x;
+    height: 70px;
+}
+
+.background-line-bottom { 
+    background: url(images/headLine.jpg) repeat-x;
+    height: 25px;
+}

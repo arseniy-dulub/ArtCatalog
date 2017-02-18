@@ -20,9 +20,13 @@ namespace ArtCatalog.Areas.Admin.Controllers
         private readonly CategoryRepository _catRepo = new CategoryRepository();
 
         // GET: Product
-        public ViewResult Index()
+        public ActionResult Index()
         {
-            return View(_prodRepo.AllIncluding(prod => prod.Categ));
+            if (User.Identity.IsAuthenticated)
+            {
+                return View(_prodRepo.AllIncluding(prod => prod.Categ));
+            }
+            else return RedirectToAction("Login", "Account");
         }
 
         // GET: Product/Details/5
