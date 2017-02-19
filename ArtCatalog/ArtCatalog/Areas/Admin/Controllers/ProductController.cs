@@ -11,6 +11,7 @@ using ArtCatalog.Models;
 using System.IO;
 using ArtCatalog.Tools;
 using System.Drawing;
+using System.Web.Routing;
 
 namespace ArtCatalog.Areas.Admin.Controllers
 {
@@ -19,32 +20,15 @@ namespace ArtCatalog.Areas.Admin.Controllers
         private readonly ProductRepository _prodRepo = new ProductRepository();
         private readonly CategoryRepository _catRepo = new CategoryRepository();
 
-        // GET: Product
+        [HttpGet]
+        [Authorize]
         public ActionResult Index()
         {
-            if (User.Identity.IsAuthenticated)
-            {
-                return View(_prodRepo.AllIncluding(prod => prod.Categ));
-            }
-            else return RedirectToAction("Login", "Account");
+            return View(_prodRepo.AllIncluding(prod => prod.Categ));
         }
-
-        // GET: Product/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Product product = _prodRepo.Find((int)id);
-            if (product == null)
-            {
-                return HttpNotFound();
-            }
-            return View(product);
-        }
-
-        // GET: Product/Create
+        
+        [HttpGet]
+        [Authorize]
         public ActionResult Create()
         {
             Product product = new Product();
@@ -57,10 +41,10 @@ namespace ArtCatalog.Areas.Admin.Controllers
             return View(product);
         }
 
-        // POST: Product/Create
         [HttpPost]
+        [Authorize]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ProductID,ProductName,ProductDescription,ProducedAt,Size,CategoryID,ThumbinalPath,OriginalPath")] Product product)
+        public ActionResult Create(Product product)
         {
             if (ModelState.IsValid)
             {
@@ -72,7 +56,9 @@ namespace ArtCatalog.Areas.Admin.Controllers
             return View(product);
         }
 
-        // GET: Product/Edit/5
+
+        [HttpGet]
+        [Authorize]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -87,11 +73,11 @@ namespace ArtCatalog.Areas.Admin.Controllers
             ViewBag.CategoryID = new SelectList(_catRepo.All, "CategoryID", "CategoryName", product.CategoryID);
             return View(product);
         }
-
-        // POST: Product/Edit/5
+        
         [HttpPost]
+        [Authorize]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ProductID,ProductName,ProductDescription,ProducedAt,Size,CategoryID,ThumbinalPath,OriginalPath")] Product product)
+        public ActionResult Edit(Product product)
         {
             if (ModelState.IsValid)
             {
@@ -102,8 +88,9 @@ namespace ArtCatalog.Areas.Admin.Controllers
             else
                 return View(product);
         }
-
-        // GET: Product/Delete/5
+        
+        [HttpGet]
+        [Authorize]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -117,9 +104,9 @@ namespace ArtCatalog.Areas.Admin.Controllers
             }
             return View(product);
         }
-
-        // POST: Product/Delete/5
+        
         [HttpPost, ActionName("Delete")]
+        [Authorize]
         [ValidateAntiForgeryToken]
         public ActionResult Delete(int id)
         {

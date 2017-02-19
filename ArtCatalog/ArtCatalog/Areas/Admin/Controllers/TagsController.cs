@@ -15,13 +15,15 @@ namespace ArtCatalog.Areas.Admin.Controllers
     {
         private CatalogContext db = new CatalogContext();
 
-        // GET: Admin/Tags
+        [HttpGet]
+        [Authorize]
         public ActionResult Index()
         {
             return View(db.Tags.ToList());
         }
 
-        // GET: Admin/Tags/Details/5
+        [HttpGet]
+        [Authorize]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -36,16 +38,15 @@ namespace ArtCatalog.Areas.Admin.Controllers
             return View(tag);
         }
 
-        // GET: Admin/Tags/Create
+        [HttpGet]
+        [Authorize]
         public ActionResult Create()
         {
             return View();
         }
-
-        // POST: Admin/Tags/Create
-        // Чтобы защититься от атак чрезмерной передачи данных, включите определенные свойства, для которых следует установить привязку. Дополнительные 
-        // сведения см. в статье http://go.microsoft.com/fwlink/?LinkId=317598.
+       
         [HttpPost]
+        [Authorize]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "TagId,TagName")] Tag tag)
         {
@@ -59,7 +60,8 @@ namespace ArtCatalog.Areas.Admin.Controllers
             return View(tag);
         }
 
-        // GET: Admin/Tags/Edit/5
+        [HttpGet]
+        [Authorize]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -73,11 +75,9 @@ namespace ArtCatalog.Areas.Admin.Controllers
             }
             return View(tag);
         }
-
-        // POST: Admin/Tags/Edit/5
-        // Чтобы защититься от атак чрезмерной передачи данных, включите определенные свойства, для которых следует установить привязку. Дополнительные 
-        // сведения см. в статье http://go.microsoft.com/fwlink/?LinkId=317598.
+        
         [HttpPost]
+        [Authorize]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "TagId,TagName")] Tag tag)
         {
@@ -90,7 +90,8 @@ namespace ArtCatalog.Areas.Admin.Controllers
             return View(tag);
         }
 
-        // GET: Admin/Tags/Delete/5
+        [HttpGet]
+        [Authorize]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -105,8 +106,8 @@ namespace ArtCatalog.Areas.Admin.Controllers
             return View(tag);
         }
 
-        // POST: Admin/Tags/Delete/5
         [HttpPost, ActionName("Delete")]
+        [Authorize]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {

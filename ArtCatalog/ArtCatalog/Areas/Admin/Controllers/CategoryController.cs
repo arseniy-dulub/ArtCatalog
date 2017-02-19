@@ -15,26 +15,29 @@ namespace ArtCatalog.Areas.Admin.Controllers
     {
         private readonly CategoryRepository _catRepo = new CategoryRepository();
 
-        // GET: /Category/
+        [HttpGet]
+        [Authorize]
         public ViewResult Index()
         {
             return View(_catRepo.AllIncluding(cat => cat.Products));
         }
 
-        // GET: Category/Details/5
+        [HttpGet]
+        [Authorize]
         public ViewResult Details(int id)
         {
             return View(_catRepo.Find(id));
         }
 
-        // GET: Category/Create
+        [HttpGet]
+        [Authorize]
         public ActionResult Create()
         {
             return View();
         }
-
-        // POST: Category/Create
+        
         [HttpPost]
+        [Authorize]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "CategoryID,CategoryName")] Category category)
         {
@@ -48,14 +51,15 @@ namespace ArtCatalog.Areas.Admin.Controllers
             return View();
         }
 
-        // GET: Category/Edit/5
+        [HttpGet]
+        [Authorize]
         public ActionResult Edit(int id)
         {
             return View(_catRepo.Find(id));
         }
-
-        // POST: Category/Edit/5
+        
         [HttpPost]
+        [Authorize]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "CategoryID,CategoryName")] Category category)
         {
@@ -69,14 +73,15 @@ namespace ArtCatalog.Areas.Admin.Controllers
                 return View(category);
         }
 
-        // GET: Category/Delete/5
+        [HttpGet]
+        [Authorize]
         public ActionResult Delete(int id)
         {
             return View(_catRepo.Find(id));
         }
-
-        // POST: Category/Delete/5
+        
         [HttpPost, ActionName("Delete")]
+        [Authorize]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {

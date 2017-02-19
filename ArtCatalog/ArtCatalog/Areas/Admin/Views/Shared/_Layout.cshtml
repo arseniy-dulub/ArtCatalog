@@ -21,14 +21,12 @@
             </div>
         </div>
     </div>
-
-    @RenderBody()
+    @RenderBody()    
     <hr />
-
     <footer>
         <p>&copy; @DateTime.Now.Year – (footer)Админка</p>
-    </footer>
-    
+    </footer>   
     <div id="PopupWrapper"></div>
+    @RenderSection("scripts", required: false)
 </body>
 </html>

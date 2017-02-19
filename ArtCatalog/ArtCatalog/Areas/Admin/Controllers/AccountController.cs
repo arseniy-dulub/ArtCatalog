@@ -9,14 +9,16 @@ namespace ArtCatalog.Areas.Admin.Controllers
     public class AccountController : Controller
     {
         [HttpGet]
+        [AllowAnonymous]
         public ActionResult Login()
         {
             return View();
         }
 
         [HttpPost]
+        [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public ActionResult Login(LoginModel model)
+        public ActionResult Login(LoginModel model, string returnUrl)
         {
             if (ModelState.IsValid)
             {
@@ -25,12 +27,11 @@ namespace ArtCatalog.Areas.Admin.Controllers
                 using (CatalogContext db = new CatalogContext())
                 {
                     user = db.Users.FirstOrDefault(u => u.Login == model.Name && u.Password == model.Password);
-
                 }
                 if (user != null)
                 {
                     FormsAuthentication.SetAuthCookie(model.Name, true);
-                    return RedirectToAction("Index", "Product");
+                    return Redirect(returnUrl);
                 }
                 else
                 {

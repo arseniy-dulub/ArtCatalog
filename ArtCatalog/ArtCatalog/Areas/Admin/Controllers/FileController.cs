@@ -12,13 +12,14 @@ namespace ArtCatalog.Areas.Admin.Controllers
     public class FileController : Controller
     {
         [HttpGet]
+        [Authorize]
         public ActionResult Index()
         {
             return View();
         }
-
-        // POST: File/Upload
+        
         [HttpPost]
+        [Authorize]
         public ActionResult Upload(HttpPostedFileWrapper uplFile)
         {
             try
