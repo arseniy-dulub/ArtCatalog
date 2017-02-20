@@ -39,13 +39,13 @@ namespace ArtCatalog.Tools
             {
                 float coeffW = width / height;
 
-                return new Size(maxWidthOrSize, (int)(width / coeffW));
+                return new Size(maxWidthOrSize, (int)(maxWidthOrSize / coeffW));
             }
             else if (height > width)
             {
                 float coeffH = height / width;
 
-                return new Size((int)(height / coeffH), maxWidthOrSize);
+                return new Size((int)(maxWidthOrSize / coeffH), maxWidthOrSize);
             }
             else
             {
