@@ -4,47 +4,47 @@
     ViewBag.Title = "Каталог работ";
 }
 <h2>Каталог работ</h2>
-<nav class="navbar navbar-default" role="navigation">
-    <div class="navbar-header">
-        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-        </button>
-        <a class="navbar-brand" href="@Url.Action("Index", "Catalog", new { id = 0 })">Все работы</a>
-    </div>
 
-    <div class="collapse navbar-collapse navbar-ex1-collapse">
-        <ul class="nav navbar-nav">
-            @foreach (var item in (IQueryable<Category>)ViewBag.Categories)
+<div class="gallery row container">
+
+    <nav class="navbar navbar-default" role="navigation">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="@Url.Action("Index", "Catalog", new { id = 0 })">Все работы</a>
+        </div>
+
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+            <ul class="nav navbar-nav">
+                @foreach (var item in (IQueryable<Category>)ViewBag.Categories)
             {
-                <li>
-                    <a href="@Url.Action("Index", "Catalog", new { id = item.CategoryID })">@item.CategoryName</a>
-                </li>
-            }        
-        </ul>        
-    </div>
-</nav>
+                    <li>
+                        <a href="@Url.Action("Index", "Catalog", new { id = item.CategoryID })">@item.CategoryName</a>
+                    </li>
+                }
+            </ul>
+        </div>
+    </nav>
 
-<div class="container">
-    <div class="row">
+    <div class="col-lg-2  navbar-right">
+        <div class="sort-global">
+            <p>Сортировать по:</p>
+            <input type="text" class="form-control" id="tokenfield" data-ng-attr-placeholder="Сортировать...">
+        </div>
+    </div>
+
+    <div class="gallery-conteiner center-block col-lg-10">
         @foreach (var item in Model)
         {
-            <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
-                
-                    <a class="group3" href="@Url.Content(item.OriginalPath)" title="@item.ProductName">
-                        <img src="@Url.Content(item.ThumbinalPath)" alt="Изображение не найдено." class="img-thumbnail"/>
-                    </a>
-                   
-                <h4>@item.ProductName</h4>
-                <p>
-                    @Html.DisplayFor(modelItem => item.ProductDescription)
-                    @Html.DisplayFor(modelItem => item.ProducedAt)
-                    @Html.DisplayFor(modelItem => item.Size)
-                </p>
-                   
-                
+            <div class="center-block col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                <span>@item.ProductName</span>
+                <a class="group3" href="@Url.Content(item.OriginalPath)" title="@item.ProductName">
+                    <img src="@Url.Content(item.ThumbinalPath)" width="504" height="260" alt="Изображение не найдено.">
+                </a>
             </div>
         }
     </div>

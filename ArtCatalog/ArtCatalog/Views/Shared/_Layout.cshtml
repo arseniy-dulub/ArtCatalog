@@ -4,35 +4,33 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="@Url.Content("~/Content/css/style.css")">
     <title>Персональный сайт художника</title>
     @Styles.Render("~/Content/css")
     @Styles.Render("~/Content/css/colorbox")
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
-    <div class="background-line-narrow">
-    </div>
-    <div class="navbar navbar-inverse navbar-static-top" id="navbar-background-image">
-        <div class="container">
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Каталог работ", "Index", "Catalog")</li>
-                </ul>
+    <div class="container-fluid">
+
+        <div class="background-line-narrow">
+        </div>
+        <div class="navbar navbar-inverse navbar-static-top" id="navbar-background-image">
+            <div class="container">
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li>@Html.ActionLink("Каталог работ", "Index", "Catalog")</li>
+                    </ul>
+                </div>
             </div>
         </div>
-    </div>
-    <div class="background-line">
-    </div>
-    <div class="background-line-narrow-blur">
-    </div>
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>(footer)</p>
-        </footer>
-    </div>
+        <div class="background-line">
+        </div>
 
+        <div class="container">
+            @RenderBody()
+        </div>
+    </div>
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @Scripts.Render("~/bundles/colorbox")

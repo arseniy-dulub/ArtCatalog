@@ -201,6 +201,7 @@
     <Content Include="Content\bootstrap-tokenfield\bootstrap-tokenfield.min.css" />
     <Content Include="Content\bootstrap-tokenfield\tokenfield-typeahead.min.css" />
     <Content Include="Content\colorbox.css" />
+    <Content Include="Content\css\style.css" />
     <Content Include="Content\images\background_canvas.jpg" />
     <Content Include="Content\images\border.png" />
     <Content Include="Content\images\border1.png" />

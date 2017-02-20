@@ -59,10 +59,10 @@
 		retinaSuffix: '@2x.$1',
 
 		// internationalization
-		current: "image {current} of {total}",
-		previous: "пред",
-		next: "next",
-		close: "close",
+		current: "{current} из {total}",
+		previous: "пред.",
+		next: "след.",
+		close: "X",
 		xhrError: "This content failed to load.",
 		imgError: "This image failed to load.",
 

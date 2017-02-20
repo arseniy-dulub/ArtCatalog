@@ -1,0 +1,472 @@
+[ng\:cloak],[data-ng-cloak], .data-ng-cloak{
+    opacity: 0;
+}
+
+
+html, body{
+    height: 100%;
+    width: 100%;
+}
+.container-fluid {
+    padding-right: 0px;
+    padding-left: 0px;
+    margin-right: auto;
+    margin-left: auto;
+}
+a {
+    color: #e2e2e9;
+    text-decoration: none;
+}
+.navbar-inverse{
+    border-radius: 0;
+}
+.container ul.nav {
+    width: 100%;
+}
+.nav-tabs {
+    border-bottom: none;
+}
+.navbar-nav {
+    margin: 7.5px 0px;
+}
+.nav-tabs > li > a:hover {
+    border-color: transparent;
+}
+.nav > li > a:hover,
+.nav > li > a:focus {
+    text-decoration: none;
+    background-color: transparent;
+}
+.nav-tabs > li > a {
+    margin-right: 0px;
+    line-height: 1.42857143;
+    border: none;
+    border-radius: 0px;
+    outline: none;
+    outline-offset: 0px;
+}
+.nav > li > a {
+    position: relative;
+    display: block;
+    padding: 10px 3px;
+    cursor: pointer;
+}
+.nav > li:first-child > a {
+    cursor: auto;
+}
+.nav-tabs > li> a:hover,
+.nav-tabs > li> a:focus {
+    color: #ffffff;
+    text-decoration: none;
+}
+.nav-tabs > li:first-child> a:not(:hover),
+.nav-tabs > li:first-child> a:not(:focus) {
+    color: #ffffff;
+    text-decoration: none;
+}
+a:active,
+a:hover {
+    outline: 0;
+}
+.jumbotron {
+    background: linear-gradient(#d9d2bf 47%, #bfb8a6 65%, #e6dfcc 85%), linear-gradient(90deg, #bfb8a6 56%, #e6dfcc 85%);
+    background-size: 3px 3px;
+    background-position: center center;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    margin-bottom: 0;
+}
+.navbar-fixed-top {
+    position: relative;
+    margin-bottom: 0px;
+}
+.jumbotron:after {
+    content: '';
+    background: linear-gradient(#c7c0ae, transparent 15%), linear-gradient(90deg, #c7c0ae, transparent 16%);
+}
+.nav-pills li a.btn-default {
+    background: linear-gradient(50deg, #c7c0ae, transparent 3px);
+}
+.nav-pills li a.btn-default:before {
+    top: 0;
+    background: linear-gradient(to top, #c7c0ae 0%, transparent 100%);
+}
+.nav-pills li a.btn-default:after {
+    bottom: 0;
+    background: linear-gradient(to bottom, #c7c0ae 0%, transparent 100%);
+}
+.nav-pills li a.btn-default:before,
+.nav-pills li a.btn-default:after {
+    content: "";
+    position: absolute;
+    display: block;
+    left: 0px;
+    width: 1px;
+    height: 50%;
+}
+.nav-pills li a.btn-default:hover,
+.nav-pills li a.btn-default:focus {
+    background: linear-gradient(#c7c0ae, transparent 15%), linear-gradient(90deg, #c7c0ae, transparent 16%);
+}
+.galery {
+    min-height: 485px;
+    background-color: #0f0f0f;
+    margin: 0px auto;
+    box-shadow: 0px 32px 27px rgba(0, 0, 0, 1);
+}
+.nav-pills li a.btn-default:hover {
+    border-color: transparent;
+}
+.twit {
+    background-color: #0f0f0f;
+    opacity: 0.6;
+    margin-top: 50px;
+    padding: 20px;
+}
+ .footer {
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    min-height: 200px;
+}
+ .footer,
+ .thumbnail {
+    background-color: #6f6c65;
+    border: none;
+}
+.thumbnail ul>li>ul li {
+    float: left;
+    padding: 5px;
+    background-color: #122b40;
+    margin: 0 5px 0 0;
+}
+.cron>.navbar {
+    margin-bottom: 0px;
+    color: white;
+}
+.gallery {
+    width: 100%;
+    padding: 40px 20px;
+    margin: 0px auto;
+    border: 1px solid gray;
+    background-color: white;
+}
+div.gallery-conteiner {
+    text-align: center;
+}
+.container .gallery .gallery-conteiner > .col-xs-12,
+.container .gallery .gallery-conteiner > .col-md-6,
+.container .gallery .gallery-conteiner > .col-lg-4 {
+    padding-right: 5px;
+    padding-left: 5px;
+    /*margin: 5px 0 0 0;*/
+}
+.img-thumbnail,
+.container-fluid .jumbotron .container .btn-default:active:hover,
+.container-fluid .jumbotron .container .btn-default:active:focus {
+    background-color: transparent;
+    border-color: transparent;
+}
+.container-fluid .jumbotron .container .btn:focus,
+.container-fluid .jumbotron .container .btn:active:focus {
+    outline: 0px;
+    outline-offset: 0px;
+}
+.container-fluid .jumbotron .container .btn-default:focus,
+.container-fluid .jumbotron .container .btn-default.focus {
+    border-color: transparent;
+}
+ul li{
+    list-style: none;
+}
+.jumbotron .container .btn-group .nav a{
+    padding: 5px 15px;
+}
+.jumbotron .container .navbar{
+    margin-bottom: 0;
+}
+.gallery .col-lg-2{
+    padding: 0;
+}
+.gallery .col-lg-10{
+    padding-right: 15px;
+    padding-left: 5px;
+}
+.container-form{
+    max-width: 100%;
+    min-height: 300px;
+    border: 1px solid transparent;
+    border-radius: 10px;
+    background-color: #5e5e5e;
+    padding: 20px;
+    margin: auto;
+    box-shadow: 0 2px 10px #000000;
+}
+.container-form textarea{
+    min-height: 100px;
+}
+
+.container-form .bottom-send{
+    margin: 20px 0;
+
+}
+
+.container-rama{
+    position: absolute;
+    height: 400px;
+    width: 360px;
+    display: block;
+    z-index: 101;
+    margin: auto;
+    background: #ffffff;
+    padding: .2em;
+    outline: 0;
+    left: 0px;
+    right: 0px;
+}
+.border-all{
+    border-radius: 3px;
+    border: 1px solid #e1e1e1;
+}
+.top-name-form{
+    border: 1px solid #dddddd;
+    background: #e1e1e1;
+    color: #000000;
+    font-weight: bold;
+    padding: .4em 1em;
+    position: relative;
+    display: inline-block;
+    width: 100%;
+}
+.top-name-form:after {
+    clear: both;
+}
+.close-form{
+    position: absolute;
+    right: .3em;
+    width: 21px;
+    padding: 0px;
+    height: 20px
+}
+.title-mame-dialog{
+    float: left;
+    margin: .1em 0;
+    white-space: nowrap;
+    font-weight: 600;
+    width: 90%;
+}
+
+.close-for-forms{
+    position: absolute;
+    margin-top: -10px;
+    margin-left: -6px;
+}
+.close-for-forms:before{
+    content: '\2718';
+}
+.form-content{
+    padding: .5em 1em;
+    margin: 20px 0 0 0;
+    width: auto;
+    height: 280px;
+}
+.text{
+    margin-bottom: 12px;
+    width: 95%;
+    padding: .4em;
+    margin-left: auto;
+    margin-right: auto;
+
+}
+.text:focus{
+    box-shadow: none;
+    outline: -webkit-focus-ring-color auto 2px;
+}
+.button-content{
+    border-width: 1px 0 0 0;
+    margin-top: -.5em;
+    padding: .3em 1em .5em .4em;
+}
+.button-content button{
+    margin: .5em .4em .5em 0;
+    float: right;
+}
+form fieldset textarea{
+    min-height: 90px;
+}
+@media (min-width: 1200px) {
+    .gallery .col-lg-2 {
+        width: auto;
+    }
+    .gallery .sort-global {
+        margin-right: 0px;
+    }
+    .container-form .bottom-send{
+        margin: 20px 0;
+    }
+    .sort-global{
+        max-width: 197px;
+    }
+    .galery, .galery img{
+        height: 485px !important;
+        min-height: 485px !important;
+    }
+}
+@media (min-width: 979px) and (max-width: 1199px) {
+    .gallery .col-lg-2 {
+        width: 100%;
+    }
+    .gallery .sort-global {
+        margin-right: 45px;
+        margin-left: 5px;
+    }
+
+    .container-form .bottom-send{
+        margin: 20px 0;
+    }
+    .galery, .galery img{
+        height: 350px !important;
+        min-height: 350px !important;
+    }
+}
+@media (min-width: 768px) and (max-width: 978px) {
+    .gallery .col-lg-2 {
+        width: 100%;
+    }
+    .gallery .sort-global {
+        margin-right: 45px;
+        margin-left: 5px;
+    }
+    .container-form .bottom-send{
+        margin: 20px 0;
+
+    }
+    .galery, .galery img{
+        height: 260px !important;
+        min-height: 260px !important;
+    }
+  }
+@media (max-width: 767px) {
+    .gallery-conteiner.col-lg-10{
+        display: flex;
+    }
+    .gallery .sort-global {
+        margin: 0 15px 0 5px;
+    }
+    .gallery {
+        padding: 10px;
+        margin: 0 auto;
+    }
+    .gallery-conteiner .img-thumbnail {
+        padding-left: 0px;
+        padding-right: 0px;
+    }
+    .container-fluid .jumbotron {
+        padding-top: 10px;
+    }
+/*    .gallery-conteiner .img-thumbnail img {
+        height: 350px !important;
+    }*/
+    .galery, .galery img{
+        height: 200px !important;
+        min-height: 200px !important;
+    }
+    .container-form .form-group:first-child {
+        margin-top: 5px;
+    }
+    .container-form .form-group:first-child {
+        margin-bottom: 5px;
+    }
+    .container-form{
+        padding: 5px;
+    }
+    .gallery-conteiner .gallrry-item{
+        margin: auto;
+    }
+    .container-rama{
+        max-width: 320px;
+    }
+}
+.gallery-conteiner.col-lg-10 .center-block.col-xs-12{
+    flex-direction: column;
+}
+.gallery .gallery-conteiner .center-block.col-xs-7{
+    max-width: 290px;
+    padding: 0px;
+   /* margin-top: 10px;*/
+    background-color: #ffffff;
+
+}
+.gallery .gallery-conteiner .center-block.col-sm-6,
+.gallery .gallery-conteiner .center-block.col-md-4, .col-lg-4{
+    max-width: 290px;
+    padding: 0px;
+   /* margin-top: 10px;*/
+    background-color: #ffffff;
+
+}
+/*.gallery .gallery-conteiner .center-block.col-md-4:nth-child(3n+2),
+.gallery .gallery-conteiner .center-block.col-sm-6:nth-child(3n+2),
+.gallery .gallery-conteiner .center-block.col-xs-7:nth-child(3n+2),
+.col-lg-4:nth-child(3n+2){
+    margin-left:5px;
+    margin-right: 5px;
+}*/
+a img{
+    object-fit: cover;
+    max-width:100%;
+    max-height: 100%;
+    box-shadow: 0 0 5px #000000;
+    -webkit-transition: all 1s ;
+    -moz-transition: all 1s ;
+    -o-transition: all 1s ;
+    transition: all 1s ;
+    opacity: 0.9;
+}
+.gallery .gallery-conteiner .center-block:hover img{
+    -webkit-transform: scale(1.07);
+    -moz-transform: scale(1.07);
+    -ms-transform: scale(1.07);
+    -o-transform: scale(1.07);
+    transform: scale(1.07);
+    opacity: 1;
+}
+.gallery .gallery-conteiner .center-block:hover span{
+    left: 0;
+    opacity: 0.7;
+    -webkit-transform: scale(1);
+    -moz-transform: scale(1);
+    -ms-transform: scale(1);
+    -o-transform: scale(1);
+    transform: scale(1);
+}
+.center-block {
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+    flex-direction: column;
+    border: 3px solid white;
+    overflow: hidden;
+    text-align: center;
+}
+.gallery-conteiner .center-block span{
+    position: absolute;
+    background-color: white;
+    z-index: 11;
+    bottom: 1px;
+    display: block;
+    box-shadow: 0 0 10px #000000;
+    width: 100%;
+    left: -100%;
+    opacity: 0;
+    -webkit-transition: left 1s, opacity .5s, transform 1s;
+    -moz-transition: left 1s, opacity .5s, transform 1s;
+    -ms-transition: left 1s, opacity .5s, transform 1s;
+    -o-transition: left 1s, opacity .5s, transform 1s;
+    transition: left 1s, opacity .5s, transform 1s;
+    -webkit-transform: scale(0);
+    -moz-transform: scale(0);
+    -ms-transform: scale(0);
+    -o-transform: scale(0);
+    transform: scale(0);
+}
