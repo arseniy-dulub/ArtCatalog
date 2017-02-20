@@ -28,45 +28,29 @@ namespace ArtCatalog.Tools
 
         public static int Quality = 95;
 
-        /// <summary>
-        /// Check size 
-        /// </summary>
-        /// <param name="imageStream"></param>
-        /// <param name="previewSize"></param>
-        /// <returns></returns>
-        public static bool CheckSize(Stream imageStream, Size previewSize)
+        public static Size ReduceSize(Stream imageStream, int maxWidthOrSize)
         {
-            Bitmap image = null;
-            try
-            {
-                image = new Bitmap(imageStream);
-                return (image.Width == previewSize.Width) && (image.Height == previewSize.Height);
-            }
-            finally
-            {
-                if (image != null)
-                {
-                    image.Dispose();
-                }
-            }
-        }
+            var bmp = new Bitmap(imageStream);
 
-        /// <summary>
-        /// types witch supported for scale
-        /// </summary>
-        /// <param name="mimeType">mimeType</param>
-        /// <returns></returns>
-        public static bool SupportMimeType(string mimeType)
-        {
-            switch (mimeType)
+            float width = bmp.Width;
+            float height = bmp.Height;
+
+            if (width > height)
             {
-                case "image/jpg":
-                case "image/jpeg":
-                case "image/png":
-                case "image/gif":
-                    return true;
+                float coeffW = width / height;
+
+                return new Size(maxWidthOrSize, (int)(width / coeffW));
             }
-            return false;
+            else if (height > width)
+            {
+                float coeffH = height / width;
+
+                return new Size((int)(height / coeffH), maxWidthOrSize);
+            }
+            else
+            {
+                return new Size(maxWidthOrSize, maxWidthOrSize);
+            }
         }
 
         /// <summary>
@@ -104,7 +88,7 @@ namespace ArtCatalog.Tools
                     }
                     else
                     {
-                        newBitmap = VerticalTopCut(previewSize, image, widthCoeff);
+                        newBitmap = VerticalCenterCut(previewSize, image, widthCoeff);
                     }
                     SaveJpeg(fileName, newBitmap, grayscale);
                 }
@@ -119,155 +103,6 @@ namespace ArtCatalog.Tools
             }
         }
        
-        /// <summary>
-        /// Create and save image
-        /// </summary>
-        /// <param name="imageStream">memoryStream with imae</param>
-        /// <param name="maxSize">max size</param>
-        /// <param name="fileName">filename to save</param>
-        /// <param name="grayscale">grayscale</param>
-        public static void CreateAndSaveImage(Stream imageStream, Size maxSize, string fileName, bool grayscale = false)
-        {
-            var image = new Bitmap(imageStream);
-            Bitmap newBitmap = null;
-            try
-            {
-                if (image.Width <= maxSize.Width && image.Height <= maxSize.Height)
-                {
-                    SaveJpeg(fileName, image, grayscale);
-                }
-                else
-                {
-                    newBitmap = ScaleResize(maxSize, image);
-                    SaveJpeg(fileName, newBitmap, grayscale);
-                }
-
-            }
-            finally
-            {
-                image.Dispose();
-                if (newBitmap != null)
-                {
-                    newBitmap.Dispose();
-                }
-            }
-        }
-
-        /// <summary>
-        /// Avatar is small image based on those rules:
-        /// if image horizontal directed - make center preview cut
-        /// if image vertical directed - make scale resizing 
-        /// </summary>
-        /// <param name="imageStream">memorystream with  image</param>
-        /// <param name="maxSize">Max size</param>
-        /// <param name="fileName">filename to  save</param>
-        /// <param name="grayscale">grayscale</param>
-        public static void CreateAndSaveAvatar(Stream imageStream, Size maxSize, string fileName, bool grayscale = false)
-        {
-            var image = new Bitmap(imageStream);
-            Bitmap newBitmap = null;
-            try
-            {
-                if (image.Width <= maxSize.Width && image.Height <= maxSize.Height)
-                {
-                    newBitmap = BaseImageOnCenter(maxSize, image);
-                }
-                else
-                {
-                    var widthCoeff = (float)image.Width / maxSize.Width;
-                    var heightCoeff = (float)image.Height / maxSize.Height;
-                    if (widthCoeff < heightCoeff)
-                    {
-                        newBitmap = HorizontalCenterCut(maxSize, image, heightCoeff);
-                    }
-                    else
-                    {
-                        newBitmap = ScaleResize(maxSize, image);
-                    }
-                }
-                SaveJpeg(fileName, newBitmap, grayscale);
-            }
-            finally
-            {
-                image.Dispose();
-                if (newBitmap != null)
-                {
-                    newBitmap.Dispose();
-                }
-            }
-        }
-
-        /// <summary>
-        /// Create and save image
-        /// </summary>
-        /// <param name="imageStream">Stream with image</param>
-        /// <param name="maxSize">max size</param>
-        /// <param name="fileName">filename to save</param>
-        /// <param name="grayscale">grayscale</param>
-        public static void CreateAndSaveFitToSize(Stream imageStream, Size previewSize, string fileName, bool grayscale = false)
-        {
-            var image = new Bitmap(imageStream);
-            Bitmap newBitmap = null;
-            try
-            {
-                var widthCoeff = (float)image.Width / previewSize.Width;
-                var heightCoeff = (float)image.Height / previewSize.Height;
-                if (widthCoeff > heightCoeff)
-                {
-                    //horizontal based image - get center part
-                    newBitmap = HorizontalCenterCut(previewSize, image, heightCoeff);
-                }
-                else
-                {
-                    newBitmap = VerticalTopCut(previewSize, image, widthCoeff);
-                }
-                SaveJpeg(fileName, newBitmap, grayscale);
-            }
-            finally
-            {
-                image.Dispose();
-                if (newBitmap != null)
-                {
-                    newBitmap.Dispose();
-                }
-            }
-        }
-
-        /// <summary>
-        /// Crop and save image
-        /// </summary>
-        /// <param name="imageStream">Stream</param>
-        /// <param name="x">x </param>
-        /// <param name="y">y</param>
-        /// <param name="w">widht</param>
-        /// <param name="h">height</param>
-        /// <param name="destSize">destination Size</param>
-        /// <param name="fileName">destination file</param>
-        /// <param name="grayscale">grayscale</param>
-        public static void CropAndSaveImage(Stream imageStream, int x, int y, int w, int h, Size destSize, string fileName, bool grayscale = false)
-        {
-            var image = new Bitmap(imageStream);
-            Bitmap newBitmap = null;
-            try
-            {
-                newBitmap = new Bitmap(destSize.Width, destSize.Height);
-                Graphics graphics = Graphics.FromImage(newBitmap);
-                MakeGraphics(destSize, graphics);
-                graphics.DrawImage(image,
-                                   new RectangleF(0f, 0f, destSize.Width, destSize.Height),
-                                   new RectangleF(x, y, w, h), GraphicsUnit.Pixel);
-                SaveJpeg(fileName, newBitmap, grayscale);
-            }
-            finally
-            {
-                image.Dispose();
-                if (newBitmap != null)
-                {
-                    newBitmap.Dispose();
-                }
-            }
-        }
-
         private static Bitmap HorizontalCenterCut(Size previewSize, Bitmap image, float heightCoeff)
         {
             Bitmap newBitmap = new Bitmap(previewSize.Width, previewSize.Height);
@@ -281,16 +116,16 @@ namespace ArtCatalog.Tools
             return newBitmap;
         }
 
-        private static Bitmap BaseImageOnCenter(Size previewSize, Bitmap image)
+        private static Bitmap VerticalCenterCut(Size previewSize, Bitmap image, float widthCoeff)
         {
             Bitmap newBitmap = new Bitmap(previewSize.Width, previewSize.Height);
-            var x = ((float)previewSize.Width / 2) - ((float)image.Width / 2);
-            var y = ((float)previewSize.Height / 2) - ((float)image.Height / 2);
             Graphics graphics = Graphics.FromImage(newBitmap);
+            
+            var y = ((float)image.Height / 2) - ((float)previewSize.Height / 2) * widthCoeff;
             MakeGraphics(previewSize, graphics);
             graphics.DrawImage(image,
-                               new RectangleF(x, y, image.Width, image.Height),
-                               new RectangleF(0, 0, image.Width, image.Height), GraphicsUnit.Pixel);
+                               new RectangleF(-1, -1, (float)previewSize.Width + 2, (float)previewSize.Height + 2),
+                               new RectangleF(0f, y, image.Width, previewSize.Height * widthCoeff), GraphicsUnit.Pixel);
             return newBitmap;
         }
 
@@ -307,18 +142,16 @@ namespace ArtCatalog.Tools
             return newBitmap;
         }
 
-        private static Bitmap ScaleResize(Size maxSize, Bitmap image)
+        private static Bitmap BaseImageOnCenter(Size previewSize, Bitmap image)
         {
-            var widthCoeff = (float)image.Width / maxSize.Width;
-            var heightCoeff = (float)image.Height / maxSize.Height;
-            var coeff = widthCoeff < heightCoeff ? heightCoeff : widthCoeff;
-            var newSize = new Size((int)(image.Width / coeff), (int)(image.Height / coeff));
-            var newBitmap = new Bitmap(newSize.Width, newSize.Height);
-            var graphics = Graphics.FromImage(newBitmap);
-            MakeGraphics(maxSize, graphics);
+            Bitmap newBitmap = new Bitmap(previewSize.Width, previewSize.Height);
+            var x = ((float)previewSize.Width / 2) - ((float)image.Width / 2);
+            var y = ((float)previewSize.Height / 2) - ((float)image.Height / 2);
+            Graphics graphics = Graphics.FromImage(newBitmap);
+            MakeGraphics(previewSize, graphics);
             graphics.DrawImage(image,
-                               new RectangleF(-1, -1, (float)newSize.Width + 2, (float)newSize.Height + 2),
-                               new RectangleF(0f, 0f, image.Width, image.Height), GraphicsUnit.Pixel);
+                               new RectangleF(x, y, image.Width, image.Height),
+                               new RectangleF(0, 0, image.Width, image.Height), GraphicsUnit.Pixel);
             return newBitmap;
         }
 
@@ -451,56 +284,6 @@ namespace ArtCatalog.Tools
                 }
             }
             return newBitmap;
-        }
-
-        public static Preview CreateAndSavePreviewSize(Stream imageStream, Size previewSize)
-        {
-            var image = new Bitmap(imageStream);
-            if ((image.Width <= previewSize.Width) && (image.Height <= previewSize.Height))
-            {
-                return new Preview
-                {
-                    X = 0,
-                    Y = 0,
-                    Width = image.Width,
-                    Height = image.Height
-                };
-            }
-            else
-            {
-                var widthCoeff = (float)image.Width / previewSize.Width;
-                var heightCoeff = (float)image.Height / previewSize.Height;
-                if (widthCoeff > heightCoeff)
-                {
-                    return HorizontalCenterPreview(previewSize, new Size(image.Width, image.Height), heightCoeff);
-                }
-                else
-                {
-                    return VerticalTopCutPreview(previewSize, new Size(image.Width, image.Height), widthCoeff);
-                }
-            }
-        }
-
-        private static Preview HorizontalCenterPreview(Size previewSize, Size realSize, float heightCoeff)
-        {
-            return new Preview
-            {
-                Y = 0,
-                X = (int)(((float)realSize.Width / 2) - ((float)previewSize.Width / 2) * heightCoeff),
-                Width = (int)(previewSize.Width * heightCoeff),
-                Height = realSize.Height
-            };
-        }
-
-        private static Preview VerticalTopCutPreview(Size previewSize, Size realSize, float widthCoeff)
-        {
-            return new Preview
-            {
-                Y = 0,
-                X = 0,
-                Height = (int)(previewSize.Height * widthCoeff),
-                Width = realSize.Width
-            };
-        } 
+        }       
     }
 }

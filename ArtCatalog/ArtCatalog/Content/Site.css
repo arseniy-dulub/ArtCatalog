@@ -1,6 +1,7 @@
 ﻿body {
-    padding-top: 50px;
+    /*padding-top: 50px;*/
     padding-bottom: 20px;
+    background: url(images/background_canvas.jpg);
 }
 
 /* Set padding to keep content from hitting the edges */
@@ -54,10 +55,16 @@ textarea {
 
 .background-line { 
     background: url(images/headLine.jpg) repeat-x;
-    height: 70px;
+    height: 40px;
 }
 
-.background-line-bottom { 
+.background-line-narrow { 
     background: url(images/headLine.jpg) repeat-x;
-    height: 25px;
+    height: 15px;
+}
+
+.navbar-static-top {
+    background-color: #2E1D21 !important;
+    border-color: #2E1D21 !important;
+    margin-bottom: 0 !important;
 }

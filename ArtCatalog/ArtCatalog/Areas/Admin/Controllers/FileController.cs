@@ -25,18 +25,16 @@ namespace ArtCatalog.Areas.Admin.Controllers
             try
             {
                 var filePath = $"/Content/files/{uplFile.FileName}";
-
-                uplFile.SaveAs(Server.MapPath(filePath));
+                PreviewCreator.CreateAndSavePreview(
+                    uplFile.InputStream,
+                    PreviewCreator.ReduceSize(uplFile.InputStream, 600),
+                    Server.MapPath(filePath));
 
                 var filePreviewPath = $"/Content/files/previews/{uplFile.FileName}";
-                var previewIconSize = new Size(300, 225);
-                if (previewIconSize != null)
-                {
-                    PreviewCreator.CreateAndSavePreview(
-                        uplFile.InputStream, 
-                        new Size(previewIconSize.Width, previewIconSize.Height),
-                        Server.MapPath(filePreviewPath));
-                }
+                PreviewCreator.CreateAndSavePreview(
+                    uplFile.InputStream,
+                    new Size(300, 225),
+                    Server.MapPath(filePreviewPath));               
 
                 return Json(new
                 {
