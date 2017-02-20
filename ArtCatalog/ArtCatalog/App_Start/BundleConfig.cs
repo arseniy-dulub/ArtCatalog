@@ -28,7 +28,8 @@ namespace ArtCatalog
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/Site.css",
-                      "~/Content/bootstrap.css")
+                      "~/Content/bootstrap.css",
+                      "~/Content/style.css")
                       );
 
             bundles.Add(new StyleBundle("~/Content/css/colorbox").
